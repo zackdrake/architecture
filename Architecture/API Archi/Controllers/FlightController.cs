@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Archi.Controllers
 {
@@ -28,10 +25,28 @@ namespace API_Archi.Controllers
             _logger = logger;
         }
 
+        // http://localhost:52880/Flight/
         [HttpGet]
         public IEnumerable<Flight> Get()
         {
             return FlightTab;
+        }
+
+        // http://localhost:52880/Flight/discount/{id}
+        [HttpGet("discount/{id}")]
+        public double Discount(int id)
+        {
+            double price = 0;
+
+            Flight[] flights = FlightTab;
+            foreach (Flight flight in flights)
+            {
+                if (flight.id == id)
+                {
+                    price = flight.price * 0.9;
+                }
+            }
+            return price;
         }
     }
 }
