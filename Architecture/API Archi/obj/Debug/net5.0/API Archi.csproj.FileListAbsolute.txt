@@ -28,3 +28,4 @@ C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\AP
 C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\API Archi\obj\Debug\net5.0\API Archi.pdb
 C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\API Archi\obj\Debug\net5.0\API Archi.genruntimeconfig.cache
 C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\API Archi\bin\Debug\net5.0\Tables\Booking.json
+C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\API Archi\bin\Debug\net5.0\Booking.json

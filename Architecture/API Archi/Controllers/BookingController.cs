@@ -31,7 +31,12 @@ namespace API_Archi.Controllers
         public void Post(Booking booking)
         {
             string fileName = "Booking.json";
-            string jsonString = JsonSerializer.Serialize(booking);
+            string jsonString = System.IO.File.ReadAllText(fileName);
+
+            List<Booking> bookings = JsonSerializer.Deserialize<List<Booking>>(jsonString);
+            bookings.Add(booking);
+
+            jsonString = JsonSerializer.Serialize(bookings);
             System.IO.File.WriteAllText(fileName, jsonString);
         }
 
