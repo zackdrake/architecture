@@ -20,7 +20,11 @@ namespace Architecture.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var vol = new Flight("CDG", "JFK", 1000);
+            var vols = new List<Flight>();
+            vols.Add(vol);
+            var model = new VolsViewModel(vols);
+            return View(model);
         }
 
         public IActionResult Privacy()
