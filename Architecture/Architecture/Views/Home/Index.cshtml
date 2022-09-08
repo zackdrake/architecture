@@ -14,6 +14,17 @@
 
 
 <form method="post">
+    <label for="vol-select">Choisissez un vol:</label>
+
+    <select name="vols" id="vol-select">
+        @{
+            foreach (Flight flight in Model.Flights)
+            {
+                <option value="@flight.ID">@flight.AirportStart - @flight.AirportArrival : @flight.Price €</option>
+            }
+        }
+    </select>
+
     <fieldset>
         <legend>Customer informations</legend>
         <div>
@@ -25,16 +36,6 @@
             <input type="text" name="Surname" value="" />
         </div>
         <div>
-    <label for="vol-select">Choisissez un vol:</label>
-
-    <select name="vols" id="vol-select">
-        @{
-            foreach (Flight flight in Model.Flights)
-            {
-                <option value="@flight.ID">@flight.AirportStart - @flight.AirportArrival : @flight.Price €</option>
-            }
-        }
-    </select>
             <label for="Date">Date:</label>
             <input type="text" name="Date" value="" />
         </div>
