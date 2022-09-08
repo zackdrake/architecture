@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture", "Architecture\Architecture.csproj", "{9DE2B692-A5D4-44CA-BE24-350187F0E195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture", "Architecture\Architecture.csproj", "{9DE2B692-A5D4-44CA-BE24-350187F0E195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API Archi", "API Archi\API Archi.csproj", "{60A0091C-9BA6-453C-97A2-B7A218BA9FF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9DE2B692-A5D4-44CA-BE24-350187F0E195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DE2B692-A5D4-44CA-BE24-350187F0E195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DE2B692-A5D4-44CA-BE24-350187F0E195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A0091C-9BA6-453C-97A2-B7A218BA9FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A0091C-9BA6-453C-97A2-B7A218BA9FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A0091C-9BA6-453C-97A2-B7A218BA9FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A0091C-9BA6-453C-97A2-B7A218BA9FF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
