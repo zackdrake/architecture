@@ -1,24 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\Architecture.csproj": {}
+    "D:\\payet\\Mes documents\\architecture\\Architecture\\Architecture\\Architecture.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\Architecture.csproj": {
+    "D:\\payet\\Mes documents\\architecture\\Architecture\\Architecture\\Architecture.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\Architecture.csproj",
+        "projectUniqueName": "D:\\payet\\Mes documents\\architecture\\Architecture\\Architecture\\Architecture.csproj",
         "projectName": "Architecture",
-        "projectPath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\Architecture.csproj",
-        "packagesPath": "C:\\Users\\aymer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\obj\\",
+        "projectPath": "D:\\payet\\Mes documents\\architecture\\Architecture\\Architecture\\Architecture.csproj",
+        "packagesPath": "C:\\Users\\bpayet\\.nuget\\packages\\",
+        "outputPath": "D:\\payet\\Mes documents\\architecture\\Architecture\\Architecture\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\payet\\programs\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\aymer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\bpayet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -60,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
