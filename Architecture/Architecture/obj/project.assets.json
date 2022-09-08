@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\Architecture.csproj",
+      "projectUniqueName": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\architecture\\Architecture\\Architecture\\Architecture.csproj",
       "projectName": "Architecture",
-      "projectPath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\Architecture.csproj",
+      "projectPath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\architecture\\Architecture\\Architecture\\Architecture.csproj",
       "packagesPath": "C:\\Users\\aymer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\Architecture\\Architecture\\obj\\",
+      "outputPath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\architecture\\Architecture\\Architecture\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
