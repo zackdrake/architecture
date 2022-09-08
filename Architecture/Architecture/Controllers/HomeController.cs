@@ -20,9 +20,11 @@ namespace Architecture.Controllers
 
         public IActionResult Index()
         {
-            var vol = new Flight("CDG", "JFK", 1000);
             var vols = new List<Flight>();
-            vols.Add(vol);
+            vols.Add(new Flight(0, "CDG", "JFK", 1000));
+            vols.Add(new Flight(1, "CDG", "DTW", 700));
+            vols.Add(new Flight(2, "DTW", "JFK", 300));
+
             var model = new VolsViewModel(vols);
             return View(model);
         }

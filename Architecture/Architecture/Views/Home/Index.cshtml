@@ -1,12 +1,19 @@
-﻿using  Architecture.Models.VolsViewModel
-
+﻿
 @{
     ViewData["Title"] = "Home Page";
 }
 
-@Model.Architecture.Models.VolsViewModel;
 
 <div class="text-center">
     <h1 class="display-4">Bienvenue</h1>
-    <a>@Model.Flights[0].Price</a>
+    <label for="vol-select">Choisissez un vol:</label>
+
+    <select name="vols" id="vol-select">
+        @{
+            foreach (Flight flight in Model.Flights)
+            {
+                <option value="@flight.ID">@flight.AirportStart - @flight.AirportArrival : @flight.Price €</option>
+            }
+        }
+    </select>
 </div>
