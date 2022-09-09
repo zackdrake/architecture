@@ -38,3 +38,4 @@ C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\Ar
 C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\Architecture\obj\Debug\net5.0\Architecture.pdb
 C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\Architecture\obj\Debug\net5.0\Architecture.genruntimeconfig.cache
 C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\Architecture\obj\Debug\net5.0\Architecture.csproj.CopyComplete
+C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\Architecture\obj\Debug\net5.0\Architecture.MvcApplicationPartsAssemblyInfo.cs

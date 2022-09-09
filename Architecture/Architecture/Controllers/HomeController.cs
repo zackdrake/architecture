@@ -1,11 +1,8 @@
 ﻿using Architecture.Models;
+using Architecture.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Architecture.Controllers
 {
@@ -20,12 +17,7 @@ namespace Architecture.Controllers
 
         public IActionResult Index()
         {
-            var vols = new List<Flight>();
-            vols.Add(new Flight(0, "CDG", "JFK", 1000));
-            vols.Add(new Flight(1, "CDG", "DTW", 700));
-            vols.Add(new Flight(2, "DTW", "JFK", 300));
-
-            var model = new VolsViewModel(vols);
+            var model = new VolsViewModel(RequestCenter.GetFlights());
             return View(model);
         }
 

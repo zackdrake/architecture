@@ -7,8 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Architecture
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\aymer\Documents\IT.IL\IT.S9\Architecture\architecture\Architecture\Architecture\
-=======
 build_property.ProjectDir = C:\INTECH\SEMESTRE 9\Architecture Logicielle\Projet\architecture\Architecture\Architecture\
->>>>>>> Anthony
