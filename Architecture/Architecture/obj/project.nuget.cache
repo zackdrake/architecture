@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "TWqoCe3+2SoD/5sERFtEDAE5kEFjBBQjWRa+gfcgvFnE6+Y1NaJYsHoK5xioQTYdHtnqVRjjmmDjtN4/PORM5A==",
   "success": true,
   "projectFilePath": "C:\\Users\\aymer\\Documents\\IT.IL\\IT.S9\\Architecture\\architecture\\Architecture\\Architecture\\Architecture.csproj",
+=======
+  "dgSpecHash": "wDQhtr24S/vHxvf4Lk58QBB6Ym4rM7KOENWQPU7+v+6Bz11e+Pux1ZVHVzpeiblCtksbnaJlJ6CkitKqPj4fVg==",
+  "success": true,
+  "projectFilePath": "C:\\INTECH\\SEMESTRE 9\\Architecture Logicielle\\Projet\\architecture\\Architecture\\Architecture\\Architecture.csproj",
+>>>>>>> Anthony
   "expectedPackageFiles": [],
   "logs": []
 }
