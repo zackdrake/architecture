@@ -17,20 +17,18 @@ namespace API_Archi.External
             POST
         }
 
-        public enum Endpoints
+        public enum ENDPOINT
         {
             flights,
-            available-options,
             book
         }
 
-        public static string GetFlights(METHOD method, ENDPOINT endpoint, string date)
+        public static string SendExternalRequest(METHOD method, ENDPOINT endpoint, string parameters)
         {
             string result = string.Empty;
-            if string.date.IsNullorEmpty(){
-                string url = EXTERNAL_API_URL + "/" + endpoint.ToString();
-            } else {
-                string url = EXTERNAL_API_URL + "/" + endpoint.ToString() + "/" + date;
+            string url = EXTERNAL_API_URL + "/" + endpoint.ToString();
+            if (!string.IsNullOrEmpty(parameters)) {
+                url += "/" + parameters;
             }
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -47,29 +45,9 @@ namespace API_Archi.External
             return result;
         }
 
-
-        // public static string LaunchRequest(METHOD method, CONTROLLER controller, string _url, string json)
-        // {
-        //     string url = HTTP + controller.ToString() + "/" + _url;
-
-        //     byte[] dataBytes = Encoding.UTF8.GetBytes(json);
-
-        //     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-        //     request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-        //     request.ContentLength = dataBytes.Length;
-        //     request.Method = method.ToString();
-
-        //     using (Stream requestBody = request.GetRequestStream())
-        //     {
-        //         requestBody.Write(dataBytes, 0, dataBytes.Length);
-        //     }
-
-        //     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-        //     using (Stream stream = response.GetResponseStream())
-        //     using (StreamReader reader = new StreamReader(stream))
-        //     {
-        //         return reader.ReadToEnd();
-        //     }
-        // }
+        public static string GetFlights(string date)
+        {
+            return SendExternalRequest(METHOD.GET, ENDPOINT.flights, date);
+        }
     }
 }
