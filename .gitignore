@@ -30,11 +30,4 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
-obj/
-/Architecture/Architecture/obj/Architecture.csproj.nuget.dgspec.json
-/Architecture/Architecture/obj/Architecture.csproj.nuget.g.props
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.assets.cache
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.csproj.AssemblyReference.cache
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.GeneratedMSBuildEditorConfig.editorconfig
-/Architecture/Architecture/obj/project.assets.json
-/Architecture/Architecture/obj/project.nuget.cache
+/Architecture/Architecture/obj/
