@@ -16,7 +16,7 @@
 
 
 <form method="post">
-    <<div class="text-center">
+    <div class="text-center">
         <h1 class="display-4">Bienvenue</h1>
         <label for="vol-select">Choisissez un vol:</label>
 
@@ -30,6 +30,18 @@
         </select>
     </div>
 
+     <fieldset>
+         <legend>Obtion</legend>
+         <div>
+             <label for="Child">Tarif enfant -10ans => -10%</label>
+             <input type="checkbox" name="Child" id="Child" />
+         </div>
+         <div>
+             <label for="Bagage">Bagage : 50€</label>
+             <input type="checkbox" name="Bagage" id="Bagage" />
+         </div>
+     </fieldset>
+
     <fieldset>
         <legend>Customer informations</legend>
         <div>
@@ -42,7 +54,7 @@
         </div>
         <div>
             <label for="Date">Date:</label>
-            <input type="text" name="Date" value="" />
+            <input type="date" name="Date"/>
         </div>
         <div>
             <label>&nbsp;</label>
