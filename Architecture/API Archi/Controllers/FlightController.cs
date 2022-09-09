@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace API_Archi.Controllers
 {
@@ -9,7 +7,6 @@ namespace API_Archi.Controllers
     [Route("[controller]")]
     public class FlightController : ControllerBase
     {
-
         public static List<Flight> ReadFlightContext()
         {
             List<Flight> flightContext = new List<Flight>();
@@ -24,37 +21,11 @@ namespace API_Archi.Controllers
             return flightContext;
         }
 
-        private readonly ILogger<FlightController> _logger;
-
-        public FlightController(ILogger<FlightController> logger)
-        {
-            _logger = logger;
-        }
-
         // http://localhost:52880/Flight/
         [HttpGet]
         public IEnumerable<Flight> Get()
         {
             return ReadFlightContext();
-        }
-
-        // http://localhost:52880/Flight/discount/{discount}/{id}/{option}
-        [HttpGet("price/{id}/{discount}/{option}")]
-        public double Price(int id, bool discount, bool option)
-        {
-            double price = 0;
-
-            List<Flight> flights = ReadFlightContext();
-
-            Flight flight = flights.Single(fl => fl.id == id);
-
-            price = flight.price;
-
-            if (discount) { price *= 0.9; }
-
-            if (option) { price += 50; }
-
-            return price;
         }
     }
 }

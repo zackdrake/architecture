@@ -10,13 +10,6 @@ namespace API_Archi.Controllers
     [Route("[controller]")]
     public class BookingController : ControllerBase
     {
-        private readonly ILogger<BookingController> _logger;
-
-        public BookingController(ILogger<BookingController> logger)
-        {
-            _logger = logger;
-        }
-
         private List<Booking> ReadBookingContext()
         {
             string fileName = "Booking.json";
