@@ -59,7 +59,7 @@ namespace API_Archi.Controllers
 
             foreach(Flight flight in flights)
             {
-                if (flight.id == id) limit = flight.nbMaxPlaces;
+                if (flight.id == id) limit = flight.nb_max_places;
             }
 
             int limitTrigger = 0;
