@@ -1,33 +1,34 @@
-﻿@{
+﻿@using API_Archi;
+@{
     ViewData["Title"] = "Home Page";
 
-    bool IsPost = false;
+ bool IsPost = false;
 
-    if (IsPost)
-    {
-        string companyname = Context.Request.Form["companyname"];
-        string contactname = Context.Request.Form["contactname"];
-        string employeecount = Context.Request.Form["employees"];
+ if (IsPost)
+ {
+     string companyname = Context.Request.Form["companyname"];
+     string contactname = Context.Request.Form["contactname"];
+     string employeecount = Context.Request.Form["employees"];
 
-    }
+ }
 }
 
 
 
 <form method="post">
     <div class="text-center">
-    <h1 class="display-4">Bienvenue</h1>
-    <label for="vol-select">Choisissez un vol:</label>
+        <h1 class="display-4">Bienvenue</h1>
+        <label for="vol-select">Choisissez un vol:</label>
 
-    <select name="vols" id="vol-select">
-        @{
-            foreach (Flight flight in Model.Flights)
-            {
-                <option value="@flight.ID">@flight.AirportStart - @flight.AirportArrival : @flight.Price €</option>
+        <select name="vols" id="vol-select">
+            @{
+                foreach (Flight flight in Model.Flights)
+                {
+                    <option value="@flight.id">@flight.airport_start - @flight.airport_arrival : @flight.price €</option>
+                }
             }
-        }
-    </select>
-</div>
+        </select>
+    </div>
 
      <fieldset>
          <legend>Obtion</legend>
