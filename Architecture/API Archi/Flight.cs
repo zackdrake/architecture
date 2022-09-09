@@ -6,21 +6,21 @@ namespace API_Archi
     {
         public int id { get; set; }
 
-        public string Airport_start { get; set; }
+        public string airport_start { get; set; }
 
-        public string Airport_arrival { get; set; }
+        public string airport_arrival { get; set; }
 
         public int price { get; set; }
 
-        public int nbMaxPlaces { get; set; }
+        public int nb_max_places { get; set; }
 
-        public Flight(int _id, string _Airport_start, string _Airport_arrival, int _price, int _nbMaxPlaces)
+        public Flight(int id, string airport_start, string airport_arrival, int price, int nb_max_places)
         {
-            id = _id;
-            Airport_start = _Airport_start;
-            Airport_arrival = _Airport_arrival;
-            price = _price;
-            nbMaxPlaces = _nbMaxPlaces;
+            this.id = id;
+            this.airport_start = airport_start;
+            this.airport_arrival = airport_arrival;
+            this.price = price;
+            this.nb_max_places = nb_max_places;
         }
     }
 }

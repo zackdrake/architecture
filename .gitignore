@@ -31,3 +31,15 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 Architecture/Architecture/obj/
+
+Architecture/API Archi/bin/Debug/net5.0/API Archi.dll
+
+Architecture/API Archi/bin/Debug/net5.0/ref/API Archi.dll
+
+Architecture/Architecture/bin/Debug/net5.0/Architecture.deps.json
+
+Architecture/Architecture/bin/Debug/net5.0/Architecture.dll
+
+Architecture/Architecture/bin/Debug/net5.0/ref/Architecture.dll
+
+Architecture/Architecture/bin/Debug/net5.0/Architecture.Views.dll
