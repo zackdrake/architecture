@@ -17,38 +17,44 @@ namespace API_Archi.Controllers
             _logger = logger;
         }
 
+        private List<Booking> ReadBookingContext()
+        {
+            string fileName = "Booking.json";
+            string jsonString = System.IO.File.ReadAllText(fileName);
+            return JsonSerializer.Deserialize<List<Booking>>(jsonString);
+        }
+
+        private void WriteBookingContext(List<Booking> bookings)
+        {
+            string fileName = "Booking.json";
+            string jsonString = JsonSerializer.Serialize(bookings);
+            System.IO.File.WriteAllText(fileName, jsonString);
+        }
+
         // http://localhost:52880/Booking/
         [HttpGet]
         public IEnumerable<Booking> Get()
         {
-            string fileName = "Booking.json";
-            string jsonString = System.IO.File.ReadAllText(fileName);
-            return JsonSerializer.Deserialize<Booking[]>(jsonString);
+            return ReadBookingContext();
         }
 
         // http://localhost:52880/Booking/
         [HttpPost]
         public void Post(Booking booking)
         {
-            string fileName = "Booking.json";
-            string jsonString = System.IO.File.ReadAllText(fileName);
-
-            List<Booking> bookings = JsonSerializer.Deserialize<List<Booking>>(jsonString);
+            List<Booking> bookings = ReadBookingContext();
             bookings.Add(booking);
 
-            jsonString = JsonSerializer.Serialize(bookings);
-            System.IO.File.WriteAllText(fileName, jsonString);
+            WriteBookingContext(bookings);
         }
 
         // http://localhost:52880/Booking/checkFlightLimit/{id}/{date}
         [HttpGet("checkFlightLimit/{id}/{date}")]
         public bool CheckFlightLimit(int id, DateTime date)
         {
-            string fileName = "Booking.json";
-            string jsonString = System.IO.File.ReadAllText(fileName);
-            Booking[] bookings = JsonSerializer.Deserialize<Booking[]>(jsonString);
+            List<Booking> bookings = ReadBookingContext();
 
-            Flight[] flights = FlightController.FlightTab;
+            List<Flight> flights = FlightController.ReadFlightContext();
             int limit = 0;
 
             foreach(Flight flight in flights)

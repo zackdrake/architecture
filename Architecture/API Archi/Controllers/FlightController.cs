@@ -8,15 +8,20 @@ namespace API_Archi.Controllers
     [Route("[controller]")]
     public class FlightController : ControllerBase
     {
-        public static readonly Flight[] FlightTab = new Flight[]
+
+        public static List<Flight> ReadFlightContext()
         {
-            new Flight(0, "CDG", "JFK", 1000, 750),
-            new Flight(1, "JFK", "CDG", 1000, 750),
-            new Flight(2, "CDG", "DTW", 700, 500),
-            new Flight(3, "DTW", "CDG", 700, 500),
-            new Flight(4, "JFK", "DTW", 300, 250),
-            new Flight(5, "DTW", "JFK", 300, 250)
-        };
+            List<Flight> flightContext = new List<Flight>();
+
+            flightContext.Add(new Flight(0, "CDG", "JFK", 1000, 750));
+            flightContext.Add(new Flight(1, "JFK", "CDG", 1000, 750));
+            flightContext.Add(new Flight(2, "CDG", "DTW", 700, 500));
+            flightContext.Add(new Flight(3, "DTW", "CDG", 700, 500));
+            flightContext.Add(new Flight(4, "JFK", "DTW", 300, 250));
+            flightContext.Add(new Flight(5, "DTW", "JFK", 300, 250));
+
+            return flightContext;
+        }
 
         private readonly ILogger<FlightController> _logger;
 
@@ -29,7 +34,7 @@ namespace API_Archi.Controllers
         [HttpGet]
         public IEnumerable<Flight> Get()
         {
-            return FlightTab;
+            return ReadFlightContext();
         }
 
         // http://localhost:52880/Flight/discount/{id}
@@ -38,7 +43,7 @@ namespace API_Archi.Controllers
         {
             double price = 0;
 
-            Flight[] flights = FlightTab;
+            List<Flight> flights = ReadFlightContext();
             foreach (Flight flight in flights)
             {
                 if (flight.id == id)
