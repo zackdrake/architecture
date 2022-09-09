@@ -31,46 +31,5 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 Architecture/Architecture/obj/
-
-Architecture/API Archi/bin/Debug/net5.0/API Archi.dll
-
-Architecture/API Archi/bin/Debug/net5.0/ref/API Archi.dll
-
-Architecture/Architecture/bin/Debug/net5.0/Architecture.deps.json
-
-Architecture/Architecture/bin/Debug/net5.0/Architecture.dll
-
-Architecture/Architecture/bin/Debug/net5.0/ref/Architecture.dll
-
-Architecture/Architecture/bin/Debug/net5.0/Architecture.Views.dll
-/Architecture/.vs/Architecture/config/applicationhost.config
-/Architecture/API Archi/bin/Debug/net5.0/API Archi.exe
-/Architecture/API Archi/bin/Debug/net5.0/API Archi.runtimeconfig.dev.json
-/Architecture/API Archi/obj/API Archi.csproj.nuget.dgspec.json
-/Architecture/API Archi/obj/API Archi.csproj.nuget.g.props
-/Architecture/API Archi/obj/Debug/net5.0/API Archi.assets.cache
-/Architecture/API Archi/obj/Debug/net5.0/API Archi.csproj.CoreCompileInputs.cache
-/Architecture/API Archi/obj/Debug/net5.0/API Archi.csproj.FileListAbsolute.txt
-/Architecture/API Archi/obj/Debug/net5.0/API Archi.GeneratedMSBuildEditorConfig.editorconfig
-/Architecture/API Archi/obj/Debug/net5.0/API Archi.genruntimeconfig.cache
-/Architecture/API Archi/obj/Debug/net5.0/apphost.exe
-/Architecture/API Archi/obj/project.assets.json
-/Architecture/API Archi/obj/project.nuget.cache
-/Architecture/Architecture/bin/Debug/net5.0/Architecture.exe
-/Architecture/Architecture/bin/Debug/net5.0/Architecture.runtimeconfig.dev.json
-/Architecture/Architecture/obj/Architecture.csproj.nuget.dgspec.json
-/Architecture/Architecture/obj/Architecture.csproj.nuget.g.props
-/Architecture/Architecture/obj/Debug/net5.0/apphost.exe
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.assets.cache
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.csproj.CoreCompileInputs.cache
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.GeneratedMSBuildEditorConfig.editorconfig
-/Architecture/Architecture/obj/Debug/net5.0/Architecture.genruntimeconfig.cache
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/_ViewImports.cshtml.g.cs
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/_ViewStart.cshtml.g.cs
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/Home/Index.cshtml.g.cs
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/Home/Privacy.cshtml.g.cs
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/Shared/_ValidationScriptsPartial.cshtml.g.cs
-/Architecture/Architecture/obj/Debug/net5.0/Razor/Views/Shared/Error.cshtml.g.cs
-/Architecture/Architecture/obj/project.assets.json
-/Architecture/Architecture/obj/project.nuget.cache
+Architecture/API Archi/obj/
+Architecture/API Archi/bin/
