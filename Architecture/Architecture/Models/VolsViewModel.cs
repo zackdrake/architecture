@@ -1,4 +1,4 @@
-using System;
+using API_Archi;
 using System.Collections.Generic;
 
 namespace Architecture.Models
@@ -11,7 +11,7 @@ namespace Architecture.Models
             _Flights = flights;
         }
 
-        public List<Flight> Flights { get => _Flights; set => _Flights = value; }
+        public List<Flight> Flights => _Flights;
     }
 
 }
