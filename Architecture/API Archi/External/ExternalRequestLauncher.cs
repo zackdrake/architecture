@@ -20,6 +20,7 @@ namespace API_Archi.External
         public enum ENDPOINT
         {
             flights,
+            available_options,
             book
         }
 
@@ -48,6 +49,11 @@ namespace API_Archi.External
         public static string GetFlights(string date)
         {
             return SendExternalRequest(METHOD.GET, ENDPOINT.flights, date);
+        }
+
+        public static string GetAvailableOptions(string flightCode)
+        {
+            return SendExternalRequest(METHOD GET, ENDPOINT available_options, flightCode)
         }
     }
 }
