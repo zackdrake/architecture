@@ -28,13 +28,19 @@ namespace API_Archi.Controllers
         {
             return ReadFlightContext();
         }
+<<<<<<< HEAD
+
         // http://localhost:52880/Flight/discount/{discount}/{id}/{option}
         [HttpGet("price/{id}/{discount}/{option}")]
-        public double Price(int id, bool discount, bool option) { 
+        public double Price(int id, bool discount, bool option)
+        {
+            double price = 0;
 
-            Flight flight = ReadFlightContext().Single(fl => fl.id == id);
+            List<Flight> flights = ReadFlightContext();
 
-            double price = flight.price;
+            Flight flight = flights.Single(fl => fl.id == id);
+
+            price = flight.price;
 
             if (discount) { price *= 0.9; }
 
@@ -42,6 +48,8 @@ namespace API_Archi.Controllers
 
             return price;
         }
+=======
+>>>>>>> Step5/Back
     }
 }
 
