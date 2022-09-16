@@ -4,6 +4,11 @@ namespace API_Archi
 {
     public class Booking
     {
+        private int v1;
+        private int price;
+        private double luggagePrice;
+        private int v2;
+
         public int id { get; set; }
 
         public string firstName { get; set; }
@@ -14,13 +19,38 @@ namespace API_Archi
 
         public DateTime date { get; set; }
 
-        public Booking(int id, string firstName, string lastName, int FlightId, DateTime date)
+        public double baseBilletPrice { get; set; }
+
+        public double luggage { get; set; }
+
+        public double childReduction { get; set; }
+
+        public int transactionId { get; set; }
+
+        public Booking(int id, string firstName, string lastName, int FlightId, DateTime date, double baseBilletPrice, double luggage, double childReduction, int transactionId)
         {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.FlightId = FlightId;
             this.date = date;
+            this.baseBilletPrice = baseBilletPrice;
+            this.luggage = luggage;
+            this.childReduction = childReduction;
+            this.transactionId = transactionId;
+        }
+
+        public Booking(int id, int price, double luggagePrice, double childReduction, int transactionId, PreBooking preBooking)
+        {
+            this.id = id;
+            firstName = preBooking.firstName;
+            lastName = preBooking.lastName;
+            FlightId = preBooking.FlightId;
+            date = preBooking.date;
+            baseBilletPrice = price;
+            luggage = luggagePrice;
+            this.childReduction = childReduction;
+            this.transactionId = transactionId;
         }
     }
 }
