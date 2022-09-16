@@ -23,21 +23,18 @@
     </div>
 
     <fieldset>
-        <legend>Obtion</legend>
+        <legend>Qui commande ?</legend>
         <div>
-            <label for="Child">Tarif enfant -10ans => -10%</label>
-            <input type="checkbox" name="Child" id="Child" checked value="true" />
-            <input type="hidden" name="Child" value="false" />
+            <label for="CustomerFirstName">Prénom:</label>
+            <input type="text" name="CustomerFirstName" value="" required />
         </div>
         <div>
-            <label for="Bagage">Bagage : 50€</label>
-            <input type="checkbox" name="Bagage" id="Bagage" checked value="true" />
-            <input type="hidden" name="Bagage" value="false" />
+            <label for="CustomerLastName">Nom:</label>
+            <input type="text" name="CustomerLastName" value="" required />
         </div>
-    </fieldset>
 
-    <fieldset>
-        <legend>Customer informations</legend>
+
+        <legend>Qui voyage ?</legend>
         <div>
             <label for="FirstName">Prénom:</label>
             <input type="text" name="FirstName" value="" required />
@@ -50,6 +47,20 @@
             <label for="Date">Date:</label>
             <input type="date" name="Date" required />
         </div>
+
+        <legend>Options</legend>
+        <div>
+            <label for="Child">Tarif enfant -10ans => -10%</label>
+            <input type="checkbox" name="Child" checked value="true" />
+            <input type="hidden" name="Child" value="false" />
+        </div>
+        <div>
+            <label for="Luggage">Bagage : 50€</label>
+            <input type="checkbox" name="Luggage" checked value="true" />
+            <input type="hidden" name="Luggage" value="false" />
+        </div>
+
+
         <input type="hidden" value="" name="Submit" id="submit" />
         <div>
             <label>&nbsp;</label>
