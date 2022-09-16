@@ -33,3 +33,6 @@ packages/
 Architecture/Architecture/obj/
 Architecture/API Archi/obj/
 Architecture/API Archi/bin/
+Architecture/API Archi/API Archi.csproj
+
+Architecture/API Archi/Tables/Booking.json
