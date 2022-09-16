@@ -31,21 +31,21 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Booking/
         [HttpGet]
-        public static IEnumerable<Booking> Get()
+        public IEnumerable<Booking> Get()
         {
             return ReadBookingContext();
         }
 
         // http://localhost:52880/Booking/
         [HttpPost("{totalPrice}")]
-        public static Booking Post(PreBooking preBooking, double totalPrice)
+        public Booking Post(PreBooking preBooking, double totalPrice)
         {
             List<Booking> bookings = ReadBookingContext(); 
             List<Flight> flights = FlightController.ReadFlightContext();
             Flight flight = flights.Single(fl => fl.id == preBooking.FlightId);
 
             Transaction transaction = new Transaction(TransactionController.NewTransactionId(), preBooking.firstName, preBooking.lastName, totalPrice);
-            TransactionController.Post(transaction);
+            new TransactionController().Post(transaction);
 
             Booking booking = new Booking(NewBookingId(), flight.price, FlightController.luggagePrice, FlightController.childReduction, transaction.id, preBooking);
             
@@ -57,10 +57,10 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Booking/Multiple/Billy/Elliot/500
         [HttpPost("Multiple/{firstName}/{lastName}/{totalPrice}")]
-        public static List<Booking> PostMultiple(List<PreBooking> preBookings, string firstName, string lastName, double totalPrice)
+        public List<Booking> PostMultiple(List<PreBooking> preBookings, string firstName, string lastName, double totalPrice)
         {
             Transaction transaction = new Transaction(TransactionController.NewTransactionId(), firstName, lastName, totalPrice);
-            TransactionController.Post(transaction);
+            new TransactionController().Post(transaction);
 
             List<Booking> bookings = new List<Booking>();
 
@@ -87,7 +87,7 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Booking/checkFlightLimit/{id}/{date}
         [HttpGet("checkFlightLimit/{id}/{date}")]
-        public static bool CheckFlightLimit(int id, DateTime date)
+        public bool CheckFlightLimit(int id, DateTime date)
         {
             List<Booking> bookings = ReadBookingContext();
 

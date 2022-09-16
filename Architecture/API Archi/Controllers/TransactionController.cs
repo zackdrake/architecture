@@ -30,14 +30,14 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Transaction/
         [HttpGet]
-        public static IEnumerable<Transaction> Get()
+        public IEnumerable<Transaction> Get()
         {
             return ReadTransactionContext();
         }
 
         // http://localhost:52880/Transaction/
         [HttpPost]
-        public static Transaction Post(Transaction booking)
+        public Transaction Post(Transaction booking)
         {
             List<Transaction> bookings = ReadTransactionContext();
             bookings.Add(booking);

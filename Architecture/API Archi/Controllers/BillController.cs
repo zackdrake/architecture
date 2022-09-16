@@ -15,7 +15,7 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Bill/price
         [HttpGet("price")]
-        public static double Price(Bill bill)
+        public double Price(Bill bill)
         {
             double price = 0;
 
@@ -33,7 +33,7 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Bill/cartprice
         [HttpGet("cartprice")]
-        public static double CartPrice(List<Bill> bills)
+        public double CartPrice(List<Bill> bills)
         {
             double price = 0;
             Dictionary<int, int> dictionary = new();
@@ -71,7 +71,7 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Bill/convert/50
         [HttpGet("convert/{price}")]
-        public static double PriceConverted(double price)
+        public double PriceConverted(double price)
         {
             price *= dollarConverter;
 

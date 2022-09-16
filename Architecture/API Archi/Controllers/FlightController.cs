@@ -26,7 +26,7 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Flight/
         [HttpGet]
-        public static IEnumerable<Flight> Get()
+        public IEnumerable<Flight> Get()
         {
             return ReadFlightContext();
         }
