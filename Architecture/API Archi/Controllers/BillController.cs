@@ -32,6 +32,7 @@ namespace API_Archi.Controllers
         public double CartPrice(List<Bill> bills)
         {
             double price = 0;
+            //List<>
 
             foreach(Bill bill in bills)
             {
