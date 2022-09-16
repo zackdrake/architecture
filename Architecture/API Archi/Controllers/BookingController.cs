@@ -11,14 +11,14 @@ namespace API_Archi.Controllers
     {
         private List<Booking> ReadBookingContext()
         {
-            string fileName = "Booking.json";
+            string fileName = "Tables/Booking.json";
             string jsonString = System.IO.File.ReadAllText(fileName);
             return JsonSerializer.Deserialize<List<Booking>>(jsonString);
         }
 
         private void WriteBookingContext(List<Booking> bookings)
         {
-            string fileName = "Booking.json";
+            string fileName = "Tables/Booking.json";
             string jsonString = JsonSerializer.Serialize(bookings);
             System.IO.File.WriteAllText(fileName, jsonString);
         }
@@ -32,12 +32,14 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Booking/
         [HttpPost]
-        public void Post(Booking booking)
+        public Booking Post(Booking booking)
         {
             List<Booking> bookings = ReadBookingContext();
             bookings.Add(booking);
 
             WriteBookingContext(bookings);
+
+            return booking;
         }
 
         // http://localhost:52880/Booking/checkFlightLimit/{id}/{date}
