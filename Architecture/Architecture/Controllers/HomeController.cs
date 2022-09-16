@@ -1,7 +1,10 @@
-﻿using Architecture.Models;
+﻿using API_Archi;
+using Architecture.Models;
 using Architecture.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Architecture.Controllers
@@ -19,6 +22,14 @@ namespace Architecture.Controllers
         {
             var model = new VolsViewModel(RequestCenter.GetAllFlights());
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult IndexPost(int flight, bool Child, bool Bagage, string Name, string Surname, DateTime Date)
+        {
+            var booking = new Booking(0, Surname, Name, flight, Date);
+            Booking bookingTest = RequestCenter.PostBooking(booking);
+            return Redirect("Index");
         }
 
         public IActionResult Privacy()
