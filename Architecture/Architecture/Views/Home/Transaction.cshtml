@@ -1,0 +1,27 @@
+﻿@using API_Archi;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table> Liste des billets 
+    <tr> 
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Vol</td>
+        <td>Date</td>
+    </tr>
+    @{
+        foreach(Booking booking in Model.Bookings)
+        {
+            <tr>
+                <td>@booking.firstName</td>
+                <td>@booking.lastName</td>
+                <td>@booking.FlightId</td>
+                <td>@booking.date</td>
+            </tr>
+        }
+    }
+
+</table>
+
+
