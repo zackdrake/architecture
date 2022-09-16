@@ -53,7 +53,7 @@ namespace API_Archi.External
 
         public static string GetAvailableOptions(string flightCode)
         {
-            return SendExternalRequest(METHOD GET, ENDPOINT available_options, flightCode)
+            return SendExternalRequest(METHOD.GET, ENDPOINT.available_options, flightCode);
         }
     }
 }
