@@ -26,12 +26,18 @@ namespace API_Archi.Controllers
 
         private static int NewBookingId()
         {
-            throw new NotImplementedException();
+            List<Booking> bookings = ReadBookingContext();
+
+            if (bookings.Count() > 0)
+            {
+                return bookings.Last().id + 1;
+            }
+            return 0;
         }
 
         // http://localhost:52880/Booking/
         [HttpGet]
-        public IEnumerable<Booking> Get()
+        public List<Booking> Get()
         {
             return ReadBookingContext();
         }

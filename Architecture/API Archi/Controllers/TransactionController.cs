@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 
 namespace API_Archi.Controllers
@@ -25,7 +26,13 @@ namespace API_Archi.Controllers
 
         internal static int NewTransactionId()
         {
-            throw new NotImplementedException();
+            List<Transaction> transactions = ReadTransactionContext();
+
+            if (transactions.Count() > 0)
+            {
+                return transactions.Last().id + 1;
+            }
+            return 0;
         }
 
         // http://localhost:52880/Transaction/
