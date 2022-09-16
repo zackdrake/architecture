@@ -4,11 +4,6 @@ namespace API_Archi
 {
     public class Booking
     {
-        private int v1;
-        private int price;
-        private double luggagePrice;
-        private int v2;
-
         public int id { get; set; }
 
         public string firstName { get; set; }
