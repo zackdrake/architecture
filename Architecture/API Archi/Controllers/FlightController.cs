@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace API_Archi.Controllers
 {
@@ -37,21 +38,33 @@ namespace API_Archi.Controllers
             return ReadFlightContext();
         }
 
-        // http://localhost:52880/Flight/discount/{id}
-        [HttpGet("discount/{id}")]
-        public double Discount(int id)
+        // http://localhost:52880/Flight/discount/{discount}/{id}/{option}
+        [HttpGet("price/{id}/{discount}/{option}")]
+        public double Price(int id, bool discount, bool option)
         {
             double price = 0;
 
             List<Flight> flights = ReadFlightContext();
-            foreach (Flight flight in flights)
-            {
-                if (flight.id == id)
-                {
-                    price = flight.price * 0.9;
-                }
-            }
+
+            Flight flight = flights.Single(fl => fl.id == id);
+
+            price = flight.price;
+
+            if (discount) { price *= 0.9; }
+
+            if (option) { price += 50; }
+
             return price;
         }
     }
 }
+
+/// STEP 4
+
+/// https://api-6yfe7nq4sq-uc.a.run.app/
+/// GET /flights
+/// GET /flights/<date>
+/// Date: d-m-Y
+/// GET /available-options/<flight>
+/// POST /book -> Ticket : https://github.com/Sobert/AirTravel/blob/main/src/model.rs
+/// Les règles de gestion de base ne s'applique pas
