@@ -6,9 +6,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API_Archi.External
+namespace Architecture.Models.Request
 {
-    public class RequestExternalLauncher
+    public class ExternalRequestLauncher
     {
         public static string EXTERNAL_API_URL = "https://api-6yfe7nq4sq-uc.a.run.app";
         public enum METHOD
