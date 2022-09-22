@@ -20,7 +20,7 @@ namespace Architecture.Controllers
 
         public IActionResult Index()
         {
-            var model = new VolsViewModel(RequestCenter.GetFlights());
+            var model = new VolsViewModel(RequestCenter.GetAllFlights());
             return View(model);
         }
 
