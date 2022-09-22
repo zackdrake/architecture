@@ -42,6 +42,10 @@ namespace Architecture.Models.Request
             List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
             return FlightParser.fullconversion(loef);
         }
+        public static List<Group7Flight> GetGroup7Flights() {
+            List<Group7Flight> loef = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+            return FlightParser.fullconversion(loef);
+        }
         public static List<Flight> GetAllFlights() {
             List<Flight> localFlights = GetFlights();
             foreach(Flight item in GetExtFlights()){
