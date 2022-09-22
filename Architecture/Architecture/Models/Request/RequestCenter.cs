@@ -33,9 +33,11 @@ namespace Architecture.Models.Request
         /// </summary>
         public static List<Transaction> GetTransactions() => JsonSerializer.Deserialize<List<Transaction>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Transaction, string.Empty));
         public static Transaction PostTransaction(Transaction transaction) => JsonSerializer.Deserialize<Transaction>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Transaction, string.Empty, JsonSerializer.Serialize(transaction)));
-        public static List<Flight> GetPrice(int flightId, bool discount, bool option) => JsonSerializer.Deserialize<List<Flight>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Flight, flightId.ToString() + "/" + discount + "/" + option));
-        public static Booking PostBooking(Booking booking) => JsonSerializer.Deserialize<Booking>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, string.Empty, JsonSerializer.Serialize(booking)));
-        public static bool CheckFlightLimit(int flightId, DateTime date) => JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, flightId.ToString() + "/" + date.ToString("dd'-'mm'-'YY'T'HH':'mm':'ss")));
+        
+        /// <summary>
+        /// External Flights
+        /// </summary>
+        /// <returns></returns>
         public static List<Flight> GetExtFlights() {
             List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
             return FlightParser.fullconversion(loef);

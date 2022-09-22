@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace API_Archi
 {
@@ -22,6 +23,7 @@ namespace API_Archi
 
         public int transactionId { get; set; }
 
+        [JsonConstructor]
         public Booking(int id, string firstName, string lastName, int FlightId, DateTime date, double baseBilletPrice, double luggage, double childReduction, int transactionId)
         {
             this.id = id;

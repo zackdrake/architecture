@@ -27,8 +27,8 @@ namespace Architecture.Controllers
         [HttpPost]
         public IActionResult IndexPost(int flight, bool Child, bool Bagage, string Name, string Surname, DateTime Date)
         {
-            var booking = new Booking(0, Surname, Name, flight, Date);
-            Booking bookingTest = RequestCenter.PostBooking(booking);
+            var booking = new PreBooking(Surname, Name, flight, Date, Bagage, Child);
+            Booking bookingTest = RequestCenter.PostBooking(booking, 0); // IL MANQUE LE PRIX DONNÉ PAR LE SERVEUR AU MOMENT DE LA TRANSACTION
             return Redirect("Index");
         }
 
