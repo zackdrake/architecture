@@ -8,6 +8,8 @@ namespace API_Archi.Controllers
     [Route("[controller]")]
     public class FlightController : ControllerBase
     {
+        public static double luggagePrice = 50;
+        public static double childReduction = 0.9;
         public static List<Flight> ReadFlightContext()
         {
             List<Flight> flightContext = new List<Flight>();
@@ -28,29 +30,5 @@ namespace API_Archi.Controllers
         {
             return ReadFlightContext();
         }
-        // http://localhost:52880/Flight/discount/{discount}/{id}/{option}
-        [HttpGet("price/{id}/{discount}/{option}")]
-        public double Price(int id, bool discount, bool option) { 
-
-            Flight flight = ReadFlightContext().Single(fl => fl.id == id);
-
-            double price = flight.price;
-
-            if (discount) { price *= 0.9; }
-
-            if (option) { price += 50; }
-
-            return price;
-        }
     }
 }
-
-/// STEP 4
-
-/// https://api-6yfe7nq4sq-uc.a.run.app/
-/// GET /flights
-/// GET /flights/<date>
-/// Date: d-m-Y
-/// GET /available-options/<flight>
-/// POST /book -> Ticket : https://github.com/Sobert/AirTravel/blob/main/src/model.rs
-/// Les règles de gestion de base ne s'applique pas
