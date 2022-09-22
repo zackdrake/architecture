@@ -42,13 +42,17 @@ namespace Architecture.Models.Request
             List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
             return FlightParser.fullconversion(loef);
         }
-        public static List<Group7Flight> GetGroup7Flights() {
-            List<Group7Flight> loef = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
-            return FlightParser.fullconversion(loef);
+        public static List<Flight> GetGroup7Flights() {
+            List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+            return FlightParser.group7fullconversion(log7f);
         }
         public static List<Flight> GetAllFlights() {
-            List<Flight> localFlights = GetFlights();
+            List<Flight> localFlights = new List<Flight>();
+            //GetFlights();
             foreach(Flight item in GetExtFlights()){
+                localFlights.Add(item);
+            }
+            foreach(Flight item in GetGroup7Flights()){
                 localFlights.Add(item);
             }
             return localFlights;

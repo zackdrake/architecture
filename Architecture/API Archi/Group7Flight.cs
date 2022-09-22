@@ -4,7 +4,7 @@ namespace API_Archi
 {
     public class Group7Flight
     {
-        public string id { get; set; }
+        public int id { get; set; }
 
         public string departure { get; set; }
 
@@ -12,7 +12,7 @@ namespace API_Archi
 
         public int price { get; set; }
 
-        public Group7Flight(string id, string departure, string arrival, int price)
+        public Group7Flight(int id, string departure, string arrival, int price)
         {
             this.id = id;
             this.departure = departure;

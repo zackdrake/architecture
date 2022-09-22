@@ -10,7 +10,7 @@ namespace Architecture.Models.Request
 {
     public class Group7RequestLauncher
     {
-        public static string EXTERNAL_API_URL = "https://10.8.111.91";
+        public static string EXTERNAL_API_URL = "http://10.8.111.204:8080";
         public enum METHOD
         {
             GET,
@@ -47,17 +47,17 @@ namespace Architecture.Models.Request
 
         public static string GetFlights()
         {
-            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, '');
+            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, null);
         }
 
         public static string GetAirports()
         {
-            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, 'airports')
+            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, "airports");
         }
 
         public static string GetBooking(int flightId, int age, bool hasLuggage, bool hasGroupPrize)
         {
-            return SendGroup7Request(METHOD.GET, ENDPOINT.booking, '/price/'+flightId+'?age='+age+'&luggage='+hasLuggage+'&groupPrice='+hasGroupPrize)
+            return SendGroup7Request(METHOD.GET, ENDPOINT.booking, "/price/"+flightId+"?age="+age+"&luggage="+hasLuggage+"&groupPrice="+hasGroupPrize);
         }
 
     }
