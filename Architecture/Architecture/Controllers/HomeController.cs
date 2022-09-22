@@ -6,36 +6,35 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-
+using System.Text.Json;
 
 namespace Architecture.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index(List<Booking> bookings = null)
         {
             var model = new VolsViewModel(RequestCenter.GetFlights());
             if (bookings != null){
                 model.Bookings = bookings;
+                model.JsonStringBookings = JsonSerializer.Serialize(bookings);
             }
-            return View(model);
+            return View("Index",model);
         }
 
         [HttpPost]
-        public IActionResult IndexPost(int flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, List<Booking> bookings, string submit)
+        public IActionResult IndexPost(int flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
         {
             Booking booking = new Booking(0, FirstName, LastName, flight, Date);
-            if (bookings == null) bookings = new List<Booking>();
-            bookings.Add(booking);            
+            List<Booking> bookingslist = new List<Booking>();
+            if (bookings != null)
+            {
+                bookingslist = JsonSerializer.Deserialize<List<Booking>>(bookings);
+            }
+
+            bookingslist.Add(booking);            
             if (submit == "transaction"){
-                return Index(bookings);
+                return Index(bookingslist);
             }
             else {
                 return Redirect("Index");
