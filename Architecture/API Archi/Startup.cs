@@ -21,6 +21,7 @@ namespace API_Archi
         {
 
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Archi", Version = "v1" });
@@ -36,6 +37,12 @@ namespace API_Archi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API_Archi v1"));
             }
+
+            app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                    .AllowCredentials()); // allow credentials
 
             app.UseHttpsRedirection();
 

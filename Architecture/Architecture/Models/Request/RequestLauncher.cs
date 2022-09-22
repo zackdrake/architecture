@@ -23,7 +23,9 @@ namespace Architecture.Models.Request
         public enum CONTROLLER
         {
             Booking,
-            Flight
+            Flight,
+            Bill,
+            Transaction
         }
 
         public static string LaunchRequest(METHOD method, CONTROLLER controller, string _endPoint)
