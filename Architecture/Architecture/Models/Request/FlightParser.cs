@@ -16,6 +16,7 @@ namespace Architecture.Models.Request
             return new Flight(
                 rnd.Next(1000), 
                 extFlight.departure,
+                string.Empty,
                 extFlight.arrival,
                 extFlight.base_price,
                 extFlight.plane.total_seats);

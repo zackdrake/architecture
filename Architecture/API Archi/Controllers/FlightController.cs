@@ -14,12 +14,12 @@ namespace API_Archi.Controllers
         {
             List<Flight> flightContext = new List<Flight>();
 
-            flightContext.Add(new Flight(0, "CDG", "JFK", 1000, 750));
-            flightContext.Add(new Flight(1, "JFK", "CDG", 1000, 750));
-            flightContext.Add(new Flight(2, "CDG", "DTW", 700, 500));
-            flightContext.Add(new Flight(3, "DTW", "CDG", 700, 500));
-            flightContext.Add(new Flight(4, "JFK", "DTW", 300, 250));
-            flightContext.Add(new Flight(5, "DTW", "JFK", 300, 250));
+            flightContext.Add(new Flight(0, "CDG", string.Empty, "JFK", 1000, 750));
+            flightContext.Add(new Flight(1, "JFK", string.Empty, "CDG", 1000, 750));
+            flightContext.Add(new Flight(2, "CDG", string.Empty, "DTW", 700, 500));
+            flightContext.Add(new Flight(3, "DTW", string.Empty, "CDG", 700, 500));
+            flightContext.Add(new Flight(4, "JFK", string.Empty, "DTW", 300, 250));
+            flightContext.Add(new Flight(5, "DTW", string.Empty, "JFK", 300, 250));
 
             return flightContext;
         }
