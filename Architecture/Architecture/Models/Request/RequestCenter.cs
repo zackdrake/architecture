@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using static API_Archi.Controllers.BillController;
 
 namespace Architecture.Models.Request
 {
@@ -25,7 +26,7 @@ namespace Architecture.Models.Request
         /// </summary>
         public static double GetPrice(Bill bill) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "price", JsonSerializer.Serialize(bill)));
         public static double GetCartPrice(List<Bill> bills) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "cartprice", JsonSerializer.Serialize(bills)));
-        public static double PriceConverted(double price) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "convert" + price));
+        public static Dictionary<MoneyRef, double> PriceConverted() => JsonSerializer.Deserialize<Dictionary<MoneyRef, double>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "convert"));
 
         /// <summary>
         /// Transactions

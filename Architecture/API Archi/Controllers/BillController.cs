@@ -23,30 +23,30 @@ namespace API_Archi.Controllers
             { MoneyRef.PLN, 4.7143 },
             { MoneyRef.RON, 4.9238 },
             { MoneyRef.SEK, 10.7541 },
-            { MoneyRef.JPY, 0.9579 },
-            { MoneyRef.BGN, 138.30 },
-            { MoneyRef.USD, 10.1985 },
-            { MoneyRef.JPY, 7.5235 },
-            { MoneyRef.BGN, 18.1923 },
-            { MoneyRef.USD, 1.4894 },
-            { MoneyRef.JPY, 5.2279 },
-            { MoneyRef.BGN, 1.3226 },
-            { MoneyRef.USD, 6.9787 },
-            { MoneyRef.JPY, 7.8133 },
-            { MoneyRef.BGN, 14904.67 },
-            { MoneyRef.USD, 3.4267 },
-            { MoneyRef.JPY, 79.3605 },
-            { MoneyRef.BGN, 1383.58 },
-            { MoneyRef.BGN, 20.0028 },
-            { MoneyRef.USD, 4.5141 },
-            { MoneyRef.JPY, 1.6717 },
-            { MoneyRef.BGN, 57.111 },
-            { MoneyRef.USD, 1.4025 },
-            { MoneyRef.JPY, 36.800 },
-            { MoneyRef.BGN, 17.6004 }
+            { MoneyRef.CHF, 0.9579 },
+            { MoneyRef.ISK, 138.30 },
+            { MoneyRef.NOK, 10.1985 },
+            { MoneyRef.HRK, 7.5235 },
+            { MoneyRef.TRY, 18.1923 },
+            { MoneyRef.AUD, 1.4894 },
+            { MoneyRef.BRL, 5.2279 },
+            { MoneyRef.CAD, 1.3226 },
+            { MoneyRef.CNY, 6.9787 },
+            { MoneyRef.HKD, 7.8133 },
+            { MoneyRef.IDR, 14904.67 },
+            { MoneyRef.ILS, 3.4267 },
+            { MoneyRef.INR, 79.3605 },
+            { MoneyRef.KRW, 1383.58 },
+            { MoneyRef.MXN, 20.0028 },
+            { MoneyRef.MYR, 4.5141 },
+            { MoneyRef.NZD, 1.6717 },
+            { MoneyRef.PHP, 57.111 },
+            { MoneyRef.SGD, 1.4025 },
+            { MoneyRef.THB, 36.800 },
+            { MoneyRef.ZAR, 17.6004 }
         };
 
-        private enum MoneyRef
+        public enum MoneyRef
         {
             USD,
             JPY,
@@ -57,7 +57,7 @@ namespace API_Archi.Controllers
             HUF,
             PLN,
             RON,
-            SEK,//
+            SEK,
             CHF,
             ISK,
             NOK,
@@ -137,13 +137,11 @@ namespace API_Archi.Controllers
             return price;
         }
 
-        // http://localhost:52880/Bill/convert/50
-        [HttpGet("convert/{price}")]
-        public double PriceConverted(double price)
+        // http://localhost:52880/Bill/convert
+        [HttpGet("convert")]
+        public Dictionary<MoneyRef, double> PriceConverted()
         {
-            price *= dollarConverter;
-
-            return price;
+            return converter;
         }
     }
 }
