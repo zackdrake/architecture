@@ -66,5 +66,10 @@ namespace Architecture.Models.Request
             }
             return localFlights;
         }
+
+        public static string PostGroup7Booking() {
+            Group7Booking g7b  = new Group7Booking(new DateTime(),"romain","delorme",2,"USD");
+            return Group7RequestLauncher.PostBooking(1,g7b);
+        }
     }
 }

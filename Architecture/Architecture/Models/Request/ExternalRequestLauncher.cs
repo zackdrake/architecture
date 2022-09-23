@@ -1,3 +1,5 @@
+using API_Archi;
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,6 +56,11 @@ namespace Architecture.Models.Request
         public static string GetAvailableOptions(string flightCode)
         {
             return SendExternalRequest(METHOD.GET, ENDPOINT.available_options, flightCode);
+        }
+
+        public static string PostBooking(ExternalBooking externalBooking)
+        {
+            return SendExternalRequest(METHOD.GET, ENDPOINT.book, null, JsonSerializer.Serialize(g7b));
         }
     }
 }
