@@ -65,6 +65,11 @@ namespace Architecture.Controllers
             return View("Transaction", model);
         }
 
+        public IActionResult TransactionPost(string CustomerFirstName, string CustomerLastName, string bookings, double price)
+        {
+            return Redirect("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();
