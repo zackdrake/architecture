@@ -25,22 +25,44 @@ namespace Architecture.Controllers
         [HttpPost]
         public IActionResult IndexPost(int flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
         {
-            PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child);
+            
+            // create list PreBooking
             List<PreBooking> bookingslist = new List<PreBooking>();
             if (bookings != null)
             {
                 bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
             }
 
-            bookingslist.Add(booking);            
+            // check flight 
+            if (RequestCenter.CheckFlightLimit(flight, Date))
+            {
+                PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child);
+                bookingslist.Add(booking);
+                
+            }
+            else 
+            {
+                if (submit == "payer")
+                {
+                    return Index(bookingslist);
+                }
+            }
+
+            // continue transaction or cell flights 
             if (submit == "transaction"){
                 return Index(bookingslist);
             }
             else {
 
-                RequestCenter.PostBookings(bookingslist);
-                return Redirect("Index");
+                double price = RequestCenter.GetCartPrice(bookingslist);
+                return Transaction(bookingslist, price);
             }
+        }
+
+        public IActionResult Transaction(List<PreBooking> bookings, double price)
+        {
+            TransactionModel model = new TransactionModel(bookings, price);
+            return View("Transaction", model);
         }
 
         public IActionResult Privacy()

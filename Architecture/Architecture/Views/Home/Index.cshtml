@@ -43,24 +43,13 @@
             @{
                 foreach (Flight flight in Model.Flights)
                 {
-                    <option value="@flight.id">@flight.airport_start - @flight.airport_arrival : @flight.price €</option>
+                    <option value="@flight.ToString()"></option>
                 }
             }
         </select>
     </div>
 
     <fieldset>
-        <legend>Qui commande ?</legend>
-        <div>
-            <label for="CustomerFirstName">Prénom:</label>
-            <input type="text" name="CustomerFirstName" value="" required />
-        </div>
-        <div>
-            <label for="CustomerLastName">Nom:</label>
-            <input type="text" name="CustomerLastName" value="" required />
-        </div>
-
-
         <legend>Qui voyage ?</legend>
         <div>
             <label for="FirstName">Prénom:</label>
