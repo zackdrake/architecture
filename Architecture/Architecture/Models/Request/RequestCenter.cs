@@ -49,7 +49,7 @@ namespace Architecture.Models.Request
         }
         public static List<Flight> GetGroup7Flights() {
             try{
-                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights("EUR"));
                 return FlightParser.group7fullconversion(log7f);
             }
             catch {

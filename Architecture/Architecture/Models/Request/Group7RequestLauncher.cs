@@ -10,7 +10,7 @@ namespace Architecture.Models.Request
 {
     public class Group7RequestLauncher
     {
-        public static string EXTERNAL_API_URL = "http://10.8.110.211:8080";
+        public static string EXTERNAL_API_URL = "http://10.8.111.241:8080";
         public static string GROUP7_API_KEY = "eyJjbGllbnRJZCI6ICJkanVzdC1rZXkiLCJhcGlLZXkiOiAiZGp1c3Qta2V5In0";
         public enum METHOD
         {
@@ -24,7 +24,7 @@ namespace Architecture.Models.Request
             booking,
         }
 
-        public static string SendGroup7Request(METHOD method, ENDPOINT endpoint, string parameters)
+        public static string SendGroup7Request(METHOD method, ENDPOINT endpoint, string parameters, string jsonBody)
         {
             string result = string.Empty;
             string url = EXTERNAL_API_URL + "/" + endpoint.ToString();
@@ -37,29 +37,55 @@ namespace Architecture.Models.Request
             request.AutomaticDecompression = DecompressionMethods.GZip;
             request.Method = method.ToString();
 
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            byte[] postBytes = Encoding.UTF8.GetBytes(jsonBody);
+            request.ContentType = "application/json; charset=UTF-8";
+            request.Accept = "application/json";
+            request.ContentLength = postBytes.Length;
+
+            Stream requestStream = request.GetRequestStream();
+            try
             {
-                result = reader.ReadToEnd();
+                requestStream.Write(postBytes, 0, postBytes.Length);
+                requestStream.Close();
+
+                // grab the response and print it out to the console along with the status code
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
+                {
+                    result = rdr.ReadToEnd();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new HttpListenerException(e.GetHashCode(), e.Message);
             }
 
             return result;
+
+        //     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //     using (Stream stream = response.GetResponseStream())
+        //     using (StreamReader reader = new StreamReader(stream))
+        //     {
+        //         result = reader.ReadToEnd();
+        //     }
+
+        //     return result;
         }
 
-        public static string GetFlights()
+        public static string GetFlights(string currency)
         {
-            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, null);
+            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, "currency="+currency, null);
         }
 
         public static string GetAirports()
         {
-            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, "airports");
+            return SendGroup7Request(METHOD.GET, ENDPOINT.flight, "airports", null);
         }
 
-        public static string GetBooking(int flightId, int age, bool hasLuggage, bool hasGroupPrize)
+        public static string GetBooking(int flightId)
         {
-            return SendGroup7Request(METHOD.GET, ENDPOINT.booking, "/price/"+flightId+"?age="+age+"&luggage="+hasLuggage+"&groupPrice="+hasGroupPrize);
+            return SendGroup7Request(METHOD.GET, ENDPOINT.booking, "/booking/1", null);
         }
 
     }
