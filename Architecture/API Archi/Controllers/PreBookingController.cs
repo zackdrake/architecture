@@ -46,7 +46,7 @@ namespace API_Archi.Controllers
         }
 
         // http://localhost:52880/PreBooking/price
-        [HttpGet("price")]
+        [HttpPut("price")]
         public double Price(PreBooking bill)
         {
             Flight flight = new FlightController().GetFlightById(bill.FlightId);
@@ -74,7 +74,7 @@ namespace API_Archi.Controllers
         }
 
         // http://localhost:52880/PreBooking/cartprice
-        [HttpGet("cartprice")]
+        [HttpPut("cartprice")]
         public double CartPrice(List<PreBooking> bills)
         {
             (Dictionary<int, int> dictionary, double price) = BillsRegroupedCalcul(bills);
