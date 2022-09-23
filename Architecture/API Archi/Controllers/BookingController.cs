@@ -94,7 +94,7 @@ namespace API_Archi.Controllers
             throw new APIExeption(APIExeption.ExeptionType.FlightFull);
         }
 
-        public Booking NoneHttpPost(PreBooking preBooking, Transaction transaction)
+        private Booking NoneHttpPost(PreBooking preBooking, Transaction transaction)
         {
             if (CheckFlightLimit(preBooking.FlightId, preBooking.date))
             {
