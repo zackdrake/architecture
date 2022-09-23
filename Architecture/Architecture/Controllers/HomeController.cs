@@ -12,7 +12,7 @@ namespace Architecture.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(List<Booking> bookings = null)
+        public IActionResult Index(List<PreBooking> bookings = null)
         {
             var model = new VolsViewModel(RequestCenter.GetFlights());
             if (bookings != null){
@@ -25,11 +25,11 @@ namespace Architecture.Controllers
         [HttpPost]
         public IActionResult IndexPost(int flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
         {
-            Booking booking = new Booking(0, FirstName, LastName, flight, Date);
-            List<Booking> bookingslist = new List<Booking>();
+            PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child);
+            List<PreBooking> bookingslist = new List<PreBooking>();
             if (bookings != null)
             {
-                bookingslist = JsonSerializer.Deserialize<List<Booking>>(bookings);
+                bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
             }
 
             bookingslist.Add(booking);            
@@ -37,33 +37,11 @@ namespace Architecture.Controllers
                 return Index(bookingslist);
             }
             else {
+
+                RequestCenter.PostBookings(bookingslist);
                 return Redirect("Index");
             }
-            // if (submit == "transaction")
-            // {
-            //     var booking = new Booking(0, FirstName, LastName, flight, Date);
-            //     if (_Bookings == null)
-            //         _Bookings = new List<Booking>();
-            //     _Bookings.Add(booking);
-            //     return Transaction();
-            // }
-            // else
-            // {
-            //     var booking = new Booking(0, FirstName, LastName, flight, Date);
-            //     Booking bookingTest = RequestCenter.PostBooking(booking);
-            //     return Redirect("Index");
-            // }
         }
-
-        // public IActionResult Transaction()
-        // {
-        //     if(bookings == null)
-        //     {
-        //         bookings = new List<Booking>();
-        //     }
-        //     var model = new VolsViewModel(bookings);
-        //     return View("Transaction",model);
-        // }
 
         public IActionResult Privacy()
         {
