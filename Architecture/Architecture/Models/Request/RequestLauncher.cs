@@ -42,6 +42,8 @@ namespace Architecture.Models.Request
             request.ContentType = "application/json; charset=UTF-8";
             request.Accept = "application/json";
 
+            request.Headers.Add("XApiKey", "ThisIsAnAPIKey");
+
             // now send it
             try
             {
@@ -77,6 +79,9 @@ namespace Architecture.Models.Request
             request.ContentType = "application/json; charset=UTF-8";
             request.Accept = "application/json";
             request.ContentLength = postBytes.Length;
+
+            request.Headers.Add("XApiKey", "ThisIsAnAPIKey");
+
             Stream requestStream = request.GetRequestStream();
 
             // now send it

@@ -150,16 +150,30 @@ namespace Architecture.Models.Request
         /// External Flights
         /// </summary>
         /// <returns></returns>
-        public static List<Flight> GetExtFlights()
-        {
-            List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
-            return FlightParser.fullconversion(loef);
+        public static List<Flight> GetExtFlights() { 
+            try {
+                List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
+                return FlightParser.fullconversion(loef);
+            }
+            catch {
+                return new List<Flight>();
+            }
         }
-        public static List<Flight> GetAllFlights()
-        {
+        public static List<Flight> GetGroup7Flights() {
+            try{
+                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+                return FlightParser.group7fullconversion(log7f);
+            }
+            catch {
+                return new List<Flight>();
+            }
+        }
+        public static List<Flight> GetAllFlights() {
             List<Flight> localFlights = GetFlights();
-            foreach (Flight item in GetExtFlights())
-            {
+            foreach(Flight item in GetExtFlights()){
+                localFlights.Add(item);
+            }
+            foreach(Flight item in GetGroup7Flights()){
                 localFlights.Add(item);
             }
             return localFlights;

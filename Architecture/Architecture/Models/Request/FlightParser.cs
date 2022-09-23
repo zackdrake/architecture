@@ -14,7 +14,7 @@ namespace Architecture.Models.Request
         public static Flight conversion(ExternalFlight extFlight){
             Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000), 
+                rnd.Next(1000),
                 extFlight.departure,
                 string.Empty,
                 extFlight.arrival,
@@ -31,6 +31,25 @@ namespace Architecture.Models.Request
             return result;
         }
 
+        public static Flight group7Conversion(Group7Flight g7Flight){
+            Random rnd = new Random();
+            return new Flight(
+                rnd.Next(1000),
+                g7Flight.departure,
+                string.Empty,
+                g7Flight.arrival,
+                g7Flight.price,
+                -1);
+        }
+
+        public static List<Flight> group7fullconversion(List<Group7Flight> listExtFlight){
+            List<Flight> result = new List<Flight>();
+            foreach (Group7Flight item in listExtFlight)
+            {
+                result.Add(group7Conversion(item));
+            }
+            return result;
+        }
         
     }
 
