@@ -150,7 +150,7 @@ namespace Architecture.Models.Request
         /// External Flights
         /// </summary>
         /// <returns></returns>
-        public static List<Flight> GetExtFlights()
+        public static List<Flight> GetExtFlights() { 
             try {
                 List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
                 return FlightParser.fullconversion(loef);
