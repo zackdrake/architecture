@@ -4,7 +4,9 @@ using System.Linq;
 
 namespace API_Archi.Controllers
 {
-    public class BillController : ControllerBase
+    [ApiController]
+    [Route("[controller]")]
+    public class PreBookingController : ControllerBase
     {
         private static double luggageValue = 0.9;
         private static double childReduceValue = 50;
@@ -23,11 +25,11 @@ namespace API_Archi.Controllers
             ZAR
         }
 
-        // http://localhost:52880/Bill/convert
+        // http://localhost:52880/PreBooking/convert
         [HttpGet("convert")]
         public Dictionary<MoneyRef, double> PriceConverted()
         {
-            return new Dictionary<MoneyRef, double>() 
+            return new Dictionary<MoneyRef, double>()
             {
                 { MoneyRef.USD, 0.9954 }, { MoneyRef.JPY, 142.53 }, { MoneyRef.BGN, 1.9558 },
                 { MoneyRef.CZK, 24.497 }, { MoneyRef.DKK, 7.4366 }, { MoneyRef.GBP, 0.87400 },
@@ -43,7 +45,7 @@ namespace API_Archi.Controllers
             };
         }
 
-        // http://localhost:52880/Bill/price
+        // http://localhost:52880/PreBooking/price
         [HttpGet("price")]
         public double Price(PreBooking bill)
         {
@@ -51,27 +53,27 @@ namespace API_Archi.Controllers
 
             double price = flight.price;
 
-            if (bill.luggage) 
-            { 
-                price *= luggageValue; 
+            if (bill.luggage)
+            {
+                price *= luggageValue;
             }
-            if (bill.childReduction) 
-            { 
-                price += childReduceValue; 
+            if (bill.childReduction)
+            {
+                price += childReduceValue;
             }
-            if (flight.airport_optional != string.Empty) 
-            { 
-                price *= escaleReduceValue; 
+            if (flight.airport_optional != string.Empty)
+            {
+                price *= escaleReduceValue;
             }
 
-            if (price > 0 )
+            if (price > 0)
             {
                 return price;
             }
             throw new APIExeption(APIExeption.ExeptionType.IllegalPrice);
         }
 
-        // http://localhost:52880/Bill/cartprice
+        // http://localhost:52880/PreBooking/cartprice
         [HttpGet("cartprice")]
         public double CartPrice(List<PreBooking> bills)
         {
@@ -79,15 +81,15 @@ namespace API_Archi.Controllers
 
             bool trigger = false;
 
-            foreach(KeyValuePair<int, int> keyValuePair in dictionary)
+            foreach (KeyValuePair<int, int> keyValuePair in dictionary)
             {
                 if (keyValuePair.Value >= groupReduceNb)
                 {
                     trigger = true;
                 }
             }
-            if (trigger) 
-            { 
+            if (trigger)
+            {
                 price *= groupReduceValue;
             }
 
@@ -108,7 +110,9 @@ namespace API_Archi.Controllers
                 price += Price(bill);
                 if (dictionary.ContainsKey(bill.FlightId))
                 {
-                    dictionary.Add(bill.FlightId, dictionary.GetValueOrDefault(bill.FlightId) + 1);
+                    int i = dictionary.GetValueOrDefault(bill.FlightId) + 1;
+                    dictionary.Remove(bill.FlightId);
+                    dictionary.Add(bill.FlightId, i);
                 }
                 else
                 {

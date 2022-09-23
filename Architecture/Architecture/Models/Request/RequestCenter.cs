@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using static API_Archi.Controllers.BillController;
+using static API_Archi.Controllers.PreBookingController;
 
 namespace Architecture.Models.Request
 {
