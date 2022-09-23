@@ -43,7 +43,7 @@
             @{
                 foreach (Flight flight in Model.Flights)
                 {
-                    <option value="@flight.ToString()"></option>
+                        <option value="@flight.id">@flight.ToString()</option>
                 }
             }
         </select>
