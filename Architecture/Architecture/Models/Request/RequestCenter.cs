@@ -85,7 +85,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.PreBooking, "price", JsonSerializer.Serialize(bill)));
+                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.PUT, RequestLauncher.CONTROLLER.PreBooking, "price", JsonSerializer.Serialize(bill)));
             }
             catch (APIExeption e)
             {
@@ -97,7 +97,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.PreBooking, "cartprice", JsonSerializer.Serialize(bills)));
+                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.PUT, RequestLauncher.CONTROLLER.PreBooking, "cartprice", JsonSerializer.Serialize(bills)));
             }
             catch (APIExeption e)
             {
