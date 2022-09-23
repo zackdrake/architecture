@@ -24,8 +24,8 @@ namespace Architecture.Models.Request
         /// <summary>
         /// Bills
         /// </summary>
-        public static double GetPrice(Bill bill) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "price", JsonSerializer.Serialize(bill)));
-        public static double GetCartPrice(List<Bill> bills) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "cartprice", JsonSerializer.Serialize(bills)));
+        public static double GetPrice(PreBooking bill) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "price", JsonSerializer.Serialize(bill)));
+        public static double GetCartPrice(List<PreBooking> bills) => JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "cartprice", JsonSerializer.Serialize(bills)));
         public static Dictionary<MoneyRef, double> PriceConverted() => JsonSerializer.Deserialize<Dictionary<MoneyRef, double>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Bill, "convert"));
 
         /// <summary>

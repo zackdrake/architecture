@@ -46,9 +46,8 @@ namespace API_Archi.Controllers
         [HttpPost("{totalPrice}")]
         public Booking Post(PreBooking preBooking, double totalPrice)
         {
-            List<Booking> bookings = ReadBookingContext(); 
-            List<Flight> flights = FlightController.ReadFlightContext();
-            Flight flight = flights.Single(fl => fl.id == preBooking.FlightId);
+            List<Booking> bookings = ReadBookingContext();
+            Flight flight = new FlightController().GetFlightById(preBooking.FlightId);
 
             Transaction transaction = new Transaction(TransactionController.NewTransactionId(), preBooking.firstName, preBooking.lastName, totalPrice);
             new TransactionController().Post(transaction);
