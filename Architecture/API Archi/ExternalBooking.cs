@@ -2,7 +2,7 @@ using System;
 
 namespace API_Archi
 {
-    public class Group7Booking
+    public class ExternalBooking
     {
         public ExternalFlight flight { get; set; }
 
@@ -16,7 +16,7 @@ namespace API_Archi
 
         public string booking_source { get; set; }
 
-        public Group7Booking(ExternalFlight flight, DateTime date, int payed_price, string customer_name, string customer_nationality, string booking_source)
+        public ExternalBooking(ExternalFlight flight, DateTime date, int payed_price, string customer_name, string customer_nationality, string booking_source)
         {
             this.flight = flight;
             this.date = date;

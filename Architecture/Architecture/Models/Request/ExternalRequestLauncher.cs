@@ -48,6 +48,47 @@ namespace Architecture.Models.Request
             return result;
         }
 
+
+        public static string SendExternalRequest(METHOD method, ENDPOINT endpoint, string parameters, string jsonBody)
+        {
+            string result = string.Empty;
+            string url = EXTERNAL_API_URL + "/" + endpoint.ToString();
+            if (!string.IsNullOrEmpty(parameters)) {
+                url += "/" + parameters;
+            }
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+            request.Method = method.ToString();
+
+            byte[] postBytes = Encoding.UTF8.GetBytes(jsonBody);
+            request.ContentType = "application/json; charset=UTF-8";
+            request.Accept = "application/json";
+            request.ContentLength = postBytes.Length;
+
+            Stream requestStream = request.GetRequestStream();
+            try
+            {
+                requestStream.Write(postBytes, 0, postBytes.Length);
+                requestStream.Close();
+
+                // grab the response and print it out to the console along with the status code
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                HttpStatusCode statusCode = response.StatusCode;
+                using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
+                {
+                    result = rdr.ReadToEnd();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new HttpListenerException(e.GetHashCode(), e.Message);
+            }
+
+            return result;
+
+        }
+
         public static string GetFlights(string date)
         {
             return SendExternalRequest(METHOD.GET, ENDPOINT.flights, date);
@@ -60,7 +101,7 @@ namespace Architecture.Models.Request
 
         public static string PostBooking(ExternalBooking externalBooking)
         {
-            return SendExternalRequest(METHOD.GET, ENDPOINT.book, null, JsonSerializer.Serialize(externalBooking));
+            return SendExternalRequest(METHOD.POST, ENDPOINT.book, null, JsonSerializer.Serialize(externalBooking));
         }
     }
 }

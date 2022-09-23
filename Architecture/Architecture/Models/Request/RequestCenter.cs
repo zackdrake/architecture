@@ -183,5 +183,12 @@ namespace Architecture.Models.Request
             Group7Booking g7b  = new Group7Booking(new DateTime(),"romain","delorme",2,"USD");
             return Group7RequestLauncher.PostBooking(1,g7b);
         }
+
+        public static string PostExternalBooking() {
+            List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
+            ExternalFlight e1 = loef[0];
+            ExternalBooking eb = new ExternalBooking(e1,new DateTime(),300,"john doe","troll","www.google.com");
+            return ExternalRequestLauncher.PostBooking(eb);
+        }
     }
 }
