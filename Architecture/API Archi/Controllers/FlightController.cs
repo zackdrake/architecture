@@ -28,14 +28,26 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Flight/
         [HttpGet]
-        public IEnumerable<Flight> Get()
+        public List<Flight> Get()
         {
-            return ReadFlightContext();
+            List<Flight> flights = ReadFlightContext();
+            
+            if(flights.Count > 0)
+            {
+                return flights;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
         }
 
         public Flight GetFlightById(int id)
         {
-            return ReadFlightContext().Single(fl => fl.id == id);
+            Flight flight = ReadFlightContext().Single(fl => fl.id == id);
+
+            if (flight != null)
+            {
+                return flight;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
         }
     }
 }

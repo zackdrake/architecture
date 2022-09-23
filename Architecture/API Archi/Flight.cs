@@ -26,7 +26,7 @@ namespace API_Archi
             this.nb_max_places = nb_max_places;
         }
 
-        public string toString() => 
+        public override string ToString() => 
             airport_optional != string.Empty 
             ? airport_start + " - " + airport_optional + " - " + airport_arrival + " : " + price + " €" 
             : airport_start + " - " + airport_arrival + " : " + price + " €";

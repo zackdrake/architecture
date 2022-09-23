@@ -64,7 +64,11 @@ namespace API_Archi.Controllers
                 price *= escaleReduceValue; 
             }
 
-            return price;
+            if (price > 0 )
+            {
+                return price;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.IllegalPrice);
         }
 
         // http://localhost:52880/Bill/cartprice
@@ -84,9 +88,14 @@ namespace API_Archi.Controllers
             }
             if (trigger) 
             { 
-                price *= groupReduceValue; 
+                price *= groupReduceValue;
             }
-            return price;
+
+            if (price > 0)
+            {
+                return price;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.IllegalPrice);
         }
 
         private (Dictionary<int, int>, double) BillsRegroupedCalcul(List<PreBooking> bills)
