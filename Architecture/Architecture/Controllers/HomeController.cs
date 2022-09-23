@@ -67,6 +67,13 @@ namespace Architecture.Controllers
 
         public IActionResult TransactionPost(string CustomerFirstName, string CustomerLastName, string bookings, double price)
         {
+            // create list PreBooking
+            List<PreBooking> bookingslist = new List<PreBooking>();
+            if (bookings != null)
+            {
+                bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
+            }
+            RequestCenter.PostBookings(bookingslist, CustomerFirstName, CustomerLastName, price);
             return Redirect("Index");
         }
 
