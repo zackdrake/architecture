@@ -14,7 +14,7 @@ namespace Architecture.Controllers
     {
         public IActionResult Index(List<PreBooking> bookings = null)
         {
-            RequestCenter.PostExternalBooking();
+            Console.WriteLine(RequestCenter.PostExternalBooking());
             var model = new VolsViewModel(RequestCenter.GetFlights());
             if (bookings != null){
                 model.Bookings = bookings;

@@ -187,7 +187,7 @@ namespace Architecture.Models.Request
         public static string PostExternalBooking() {
             List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
             ExternalFlight e1 = loef[0];
-            ExternalBooking eb = new ExternalBooking(e1,new DateTime(),300,"john doe","troll","www.google.com");
+            ExternalBooking eb = new ExternalBooking(null, e1,"23-09-2022",300,"john doe","troll",null,"www.google.com");
             return ExternalRequestLauncher.PostBooking(eb);
         }
     }
