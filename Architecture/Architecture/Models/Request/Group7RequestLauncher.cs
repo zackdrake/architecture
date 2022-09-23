@@ -10,7 +10,8 @@ namespace Architecture.Models.Request
 {
     public class Group7RequestLauncher
     {
-        public static string EXTERNAL_API_URL = "http://10.8.111.204:8080";
+        public static string EXTERNAL_API_URL = "http://10.8.110.211:8080";
+        public static string GROUP7_API_KEY = "eyJjbGllbnRJZCI6ICJkanVzdC1rZXkiLCJhcGlLZXkiOiAiZGp1c3Qta2V5In0";
         public enum METHOD
         {
             GET,
@@ -32,6 +33,7 @@ namespace Architecture.Models.Request
             }
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Headers.Add("su-api-key", GROUP7_API_KEY);
             request.AutomaticDecompression = DecompressionMethods.GZip;
             request.Method = method.ToString();
 
