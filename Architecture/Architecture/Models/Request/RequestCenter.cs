@@ -11,7 +11,7 @@ namespace Architecture.Models.Request
         /// <summary>
         /// Flights
         /// </summary>
-        public static List<Flight> GetFlights() => JsonSerializer.Deserialize<List<Flight>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Flight, string.Empty));
+        public static List<Flight> GetFlights() => JsonSerializer.Deserialize<List<Flight>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Flight, null));
 
         /// <summary>
         /// Bookings
@@ -39,16 +39,25 @@ namespace Architecture.Models.Request
         /// </summary>
         /// <returns></returns>
         public static List<Flight> GetExtFlights() {
-            List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
-            return FlightParser.fullconversion(loef);
+            try {
+                List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
+                return FlightParser.fullconversion(loef);
+            }
+            catch {
+                return new List<Flight>();
+            }
         }
         public static List<Flight> GetGroup7Flights() {
-            List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
-            return FlightParser.group7fullconversion(log7f);
+            try{
+                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+                return FlightParser.group7fullconversion(log7f);
+            }
+            catch {
+                return new List<Flight>();
+            }
         }
         public static List<Flight> GetAllFlights() {
-            List<Flight> localFlights = new List<Flight>();
-            //GetFlights();
+            List<Flight> localFlights = GetFlights();
             foreach(Flight item in GetExtFlights()){
                 localFlights.Add(item);
             }
