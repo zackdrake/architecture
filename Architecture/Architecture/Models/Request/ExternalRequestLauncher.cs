@@ -60,7 +60,7 @@ namespace Architecture.Models.Request
 
         public static string PostBooking(ExternalBooking externalBooking)
         {
-            return SendExternalRequest(METHOD.GET, ENDPOINT.book, null, JsonSerializer.Serialize(g7b));
+            return SendExternalRequest(METHOD.GET, ENDPOINT.book, null, JsonSerializer.Serialize(externalBooking));
         }
     }
 }
