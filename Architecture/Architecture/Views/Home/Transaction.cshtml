@@ -1,0 +1,48 @@
+﻿@using API_Archi;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table>
+    Liste des billets
+    <tr>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>Vol</td>
+        <td>Date</td>
+    </tr>
+    @{
+        foreach (PreBooking booking in Model.Bookings)
+        {
+            <tr>
+                <td>@booking.firstName</td>
+                <td>@booking.lastName</td>
+                <td>@booking.FlightId</td>
+                <td>@booking.date</td>
+            </tr>
+        }
+    }
+
+</table>
+<form method="post" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TransactionPost">
+    <fieldset>
+        <legend>Qui commande ?</legend>
+        <div>
+            <label for="CustomerFirstName">Prénom:</label>
+            <input type="text" name="CustomerFirstName" value="" required />
+        </div>
+        <div>
+            <label for="CustomerLastName">Nom:</label>
+            <input type="text" name="CustomerLastName" value="" required />
+        </div>
+
+        <legend>Payer</legend>
+        <div>
+            <input type="submit" value="@Model.Price" />
+        </div>
+    </fieldset>
+    <input type="hidden" name="bookings" value="@Model.JsonStringBookings" />
+    <input type="hidden" name="price" value="@Model.Price" />
+</form>
+
+

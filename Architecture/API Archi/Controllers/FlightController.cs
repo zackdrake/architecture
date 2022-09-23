@@ -20,15 +20,34 @@ namespace API_Archi.Controllers
             flightContext.Add(new Flight(3, "DTW", string.Empty, "CDG", 700, 500));
             flightContext.Add(new Flight(4, "JFK", string.Empty, "DTW", 300, 250));
             flightContext.Add(new Flight(5, "DTW", string.Empty, "JFK", 300, 250));
+            flightContext.Add(new Flight(6, "CDG", "DTW", "JFK", 1000, 200));
+            flightContext.Add(new Flight(7, "JFK", "DTW", "CDG", 1000, 200));
 
             return flightContext;
         }
 
         // http://localhost:52880/Flight/
         [HttpGet]
-        public IEnumerable<Flight> Get()
+        public List<Flight> Get()
         {
-            return ReadFlightContext();
+            List<Flight> flights = ReadFlightContext();
+            
+            if(flights.Count > 0)
+            {
+                return flights;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
+        }
+
+        public Flight GetFlightById(int id)
+        {
+            Flight flight = ReadFlightContext().Single(fl => fl.id == id);
+
+            if (flight != null)
+            {
+                return flight;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
         }
     }
 }

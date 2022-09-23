@@ -6,29 +6,74 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Architecture.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult Index(List<PreBooking> bookings = null)
         {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            var model = new VolsViewModel(RequestCenter.GetAllFlights());
-            return View(model);
+            var model = new VolsViewModel(RequestCenter.GetFlights());
+            if (bookings != null){
+                model.Bookings = bookings;
+                model.JsonStringBookings = JsonSerializer.Serialize(bookings);
+            }
+            return View("Index",model);
         }
 
         [HttpPost]
-        public IActionResult IndexPost(int flight, bool Child, bool Bagage, string Name, string Surname, DateTime Date)
+        public IActionResult IndexPost(int flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
         {
-            var booking = new PreBooking(Surname, Name, flight, Date, Bagage, Child);
-            Booking bookingTest = RequestCenter.PostBooking(booking, 0); // IL MANQUE LE PRIX DONNÉ PAR LE SERVEUR AU MOMENT DE LA TRANSACTION
+            
+            // create list PreBooking
+            List<PreBooking> bookingslist = new List<PreBooking>();
+            if (bookings != null)
+            {
+                bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
+            }
+
+            // check flight 
+            if (RequestCenter.CheckFlightLimit(flight, Date))
+            {
+                PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child);
+                bookingslist.Add(booking);
+                
+            }
+            else 
+            {
+                if (submit == "payer")
+                {
+                    return Index(bookingslist);
+                }
+            }
+
+            // continue transaction or cell flights 
+            if (submit == "transaction"){
+                return Index(bookingslist);
+            }
+            else {
+
+                double price = RequestCenter.GetCartPrice(bookingslist);
+                return Transaction(bookingslist, price);
+            }
+        }
+
+        public IActionResult Transaction(List<PreBooking> bookings, double price)
+        {
+            TransactionModel model = new TransactionModel(bookings, price);
+            return View("Transaction", model);
+        }
+
+        public IActionResult TransactionPost(string CustomerFirstName, string CustomerLastName, string bookings, double price)
+        {
+            // create list PreBooking
+            List<PreBooking> bookingslist = new List<PreBooking>();
+            if (bookings != null)
+            {
+                bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
+            }
+            RequestCenter.PostBookings(bookingslist, CustomerFirstName, CustomerLastName, price);
             return Redirect("Index");
         }
 

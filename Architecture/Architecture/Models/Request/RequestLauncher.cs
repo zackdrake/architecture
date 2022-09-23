@@ -24,7 +24,7 @@ namespace Architecture.Models.Request
         {
             Booking,
             Flight,
-            Bill,
+            PreBooking,
             Transaction
         }
 
@@ -34,7 +34,7 @@ namespace Architecture.Models.Request
             string result = string.Empty;
             HttpStatusCode statusCode = 0;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(HTTP + PORT + controller + _endPoint);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(HTTP + PORT + controller + "/" + _endPoint);
             request.KeepAlive = false;
             request.ProtocolVersion = HttpVersion.Version10;
             request.Method = method.ToString();
@@ -68,7 +68,7 @@ namespace Architecture.Models.Request
             string strResponseValue = string.Empty;
             HttpStatusCode statusCode = 0;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(HTTP + PORT + controller + _endPoint);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(HTTP + PORT + controller + "/" + _endPoint);
             request.KeepAlive = false;
             request.ProtocolVersion = HttpVersion.Version10;
             request.Method = method.ToString();
