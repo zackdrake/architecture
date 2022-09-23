@@ -19,7 +19,7 @@ namespace Architecture.Models.Request
         public static List<Booking> GetBookings() => JsonSerializer.Deserialize<List<Booking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, string.Empty));
         public static Booking PostBooking(PreBooking preBooking, double totalPrice) => JsonSerializer.Deserialize<Booking>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, totalPrice.ToString(), JsonSerializer.Serialize(preBooking)));
         public static List<PreBooking> PostBookings(List<PreBooking> preBookings, string firstName, string lastName, double totalPrice) => JsonSerializer.Deserialize<List<PreBooking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, "Multiple/" + firstName + "/" + lastName + "/" + totalPrice, JsonSerializer.Serialize(preBookings)));
-        public static bool CheckFlightLimit(int flightId, DateTime date) => JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId.ToString() + " / " + date.ToString("dd'-'MM'-'yy'T'HH':'mm':'ss")));
+        public static bool CheckFlightLimit(int flightId, DateTime date) => JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId.ToString() + "/" + date.ToString("dd'-'MM'-'yy'T'HH':'mm':'ss")));
 
         /// <summary>
         /// Bills
