@@ -20,6 +20,8 @@ namespace API_Archi.Controllers
             flightContext.Add(new Flight(3, "DTW", string.Empty, "CDG", 700, 500));
             flightContext.Add(new Flight(4, "JFK", string.Empty, "DTW", 300, 250));
             flightContext.Add(new Flight(5, "DTW", string.Empty, "JFK", 300, 250));
+            flightContext.Add(new Flight(6, "CDG", "DTW", "JFK", 1000, 200));
+            flightContext.Add(new Flight(7, "JFK", "DTW", "CDG", 1000, 200));
 
             return flightContext;
         }
@@ -29,6 +31,11 @@ namespace API_Archi.Controllers
         public IEnumerable<Flight> Get()
         {
             return ReadFlightContext();
+        }
+
+        public Flight GetFlightById(int id)
+        {
+            return ReadFlightContext().Single(fl => fl.id == id);
         }
     }
 }
