@@ -24,7 +24,7 @@ namespace Architecture.Models.Request
         {
             Booking,
             Flight,
-            Bill,
+            PreBooking,
             Transaction
         }
 
