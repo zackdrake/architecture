@@ -53,11 +53,11 @@ namespace Architecture.Models.Request
             }
         }
 
-        public static List<PreBooking> PostBookings(List<PreBooking> preBookings, string firstName, string lastName, double totalPrice)
+        public static List<Booking> PostBookings(List<PreBooking> preBookings, string firstName, string lastName, double totalPrice)
         {
             try
             {
-                return JsonSerializer.Deserialize<List<PreBooking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, "Multiple/" + firstName + "/" + lastName + "/" + totalPrice, JsonSerializer.Serialize(preBookings)));
+                return JsonSerializer.Deserialize<List<Booking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, "Multiple/" + firstName + "/" + lastName + "/" + totalPrice, JsonSerializer.Serialize(preBookings)));
             }
             catch (APIExeption e)
             {
