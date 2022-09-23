@@ -39,7 +39,13 @@ namespace API_Archi.Controllers
         [HttpGet]
         public List<Booking> Get()
         {
-            return ReadBookingContext();
+            List<Booking> bookings = ReadBookingContext();
+
+            if (bookings.Count > 0)
+            {
+                return bookings;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
         }
 
         // http://localhost:52880/Booking/
@@ -49,15 +55,19 @@ namespace API_Archi.Controllers
             List<Booking> bookings = ReadBookingContext();
             Flight flight = new FlightController().GetFlightById(preBooking.FlightId);
 
-            Transaction transaction = new Transaction(TransactionController.NewTransactionId(), preBooking.firstName, preBooking.lastName, totalPrice);
-            new TransactionController().Post(transaction);
+            if (CheckFlightLimit(preBooking.FlightId, preBooking.date))
+            {
+                Transaction transaction = new Transaction(TransactionController.NewTransactionId(), preBooking.firstName, preBooking.lastName, totalPrice);
+                new TransactionController().Post(transaction);
 
-            Booking booking = new Booking(NewBookingId(), flight.price, FlightController.luggagePrice, FlightController.childReduction, transaction.id, preBooking);
-            
-            bookings.Add(booking);
-            WriteBookingContext(bookings);
+                Booking booking = new Booking(NewBookingId(), flight.price, FlightController.luggagePrice, FlightController.childReduction, transaction.id, preBooking);
 
-            return booking;
+                bookings.Add(booking);
+                WriteBookingContext(bookings);
+
+                return booking;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.FlightFull);
         }
 
         // http://localhost:52880/Booking/Multiple/Billy/Elliot/500
@@ -71,23 +81,35 @@ namespace API_Archi.Controllers
 
             foreach (PreBooking booking in preBookings)
             {
-                bookings.Add(NoneHttpPost(booking, transaction));
+                Booking newBooking = NoneHttpPost(booking, transaction);
+                if (newBooking != null)
+                {
+                    bookings.Add(newBooking);
+                }
             }
-            return bookings;
+            if (bookings.Count > 0)
+            {
+                return bookings;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.FlightFull);
         }
 
-        public static Booking NoneHttpPost(PreBooking preBooking, Transaction transaction)
+        public Booking NoneHttpPost(PreBooking preBooking, Transaction transaction)
         {
-            List<Booking> bookings = ReadBookingContext();
-            List<Flight> flights = FlightController.ReadFlightContext();
-            Flight flight = flights.Single(fl => fl.id == preBooking.FlightId);
+            if (CheckFlightLimit(preBooking.FlightId, preBooking.date))
+            {
+                List<Booking> bookings = ReadBookingContext();
+                List<Flight> flights = FlightController.ReadFlightContext();
+                Flight flight = flights.Single(fl => fl.id == preBooking.FlightId);
 
-            Booking booking = new Booking(NewBookingId(), flight.price, FlightController.luggagePrice, FlightController.childReduction, transaction.id, preBooking);
+                Booking booking = new Booking(NewBookingId(), flight.price, FlightController.luggagePrice, FlightController.childReduction, transaction.id, preBooking);
 
-            bookings.Add(booking);
-            WriteBookingContext(bookings);
+                bookings.Add(booking);
+                WriteBookingContext(bookings);
 
-            return booking;
+                return booking;
+            }
+            return null;
         }
 
         // http://localhost:52880/Booking/checkFlightLimit/{id}/{date}

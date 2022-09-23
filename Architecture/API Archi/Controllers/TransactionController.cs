@@ -37,21 +37,28 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Transaction/
         [HttpGet]
-        public IEnumerable<Transaction> Get()
+        public List<Transaction> Get()
         {
-            return ReadTransactionContext();
+            List<Transaction> transactions = ReadTransactionContext();
+
+            if (transactions.Count > 0)
+            {
+                return transactions;
+            }
+            throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
         }
 
         // http://localhost:52880/Transaction/
         [HttpPost]
-        public Transaction Post(Transaction booking)
+        public Transaction Post(Transaction transaction)
         {
-            List<Transaction> bookings = ReadTransactionContext();
-            bookings.Add(booking);
+            List<Transaction> transactions = ReadTransactionContext();
 
-            WriteTransactionContext(bookings);
+            transactions.Add(transaction);
 
-            return booking;
+            WriteTransactionContext(transactions);
+
+            return transaction;
         }
     }
 }
