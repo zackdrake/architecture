@@ -110,29 +110,15 @@ namespace API_Archi
             return StopsTab;
         }
 
-        public List<FlightOption> GetFlightOptions()
+        public List<BrokerAvailableOptions> GetFlightOptions()
         {
-            List<FlightOption> flightOptions = new List<FlightOption>();
+            List<BrokerAvailableOptions> flightOptions = new List<BrokerAvailableOptions>();
 
-            flightOptions.Add(new FlightOption("luggage", "01", 10));
-            flightOptions.Add(new FlightOption("childReduction", "02", 50));
-            flightOptions.Add(new FlightOption("trainFirstClassOption", "03", 50));
+            flightOptions.Add(new BrokerAvailableOptions("luggage", "01", 10));
+            flightOptions.Add(new BrokerAvailableOptions("childReduction", "02", 50));
+            flightOptions.Add(new BrokerAvailableOptions("trainFirstClassOption", "03", 50));
 
             return flightOptions;
         }
-    }
 
-    public class FlightOption
-    {
-        public string name;
-        public string code;
-        public int price;
-
-        public FlightOption(string name, string code, int price)
-        {
-            this.name = name;
-            this.code = code;
-            this.price = price;
-        }
-    }
 }
