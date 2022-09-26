@@ -10,7 +10,7 @@ Chacun de ces fichiers doit contenir seulement
 ```
 
 Sur Linux, avec l'environnement dotnet :
-Dans Architecture/Architecture lancez le front-end avec : `dotnet run --urls="http://localhost:5005"` (le port n'est pas important)
+Dans Architecture/Architecture lancez le front-end avec : `dotnet run --urls="http://localhost:5005"` (le port n'est pas important)\
 Dans Architecture/API Archi lancez : `dotnet run --urls="http://localhost:52880"` (le port est important)
 
 Les requêtes vers l'api externe (https://github.com/Sobert/AirTravel/blob/main/src/model.rs) devraient fonctionner.
