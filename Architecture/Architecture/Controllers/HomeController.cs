@@ -14,8 +14,7 @@ namespace Architecture.Controllers
     {
         public IActionResult Index(List<PreBooking> bookings = null)
         {
-            Console.WriteLine(RequestCenter.PostExternalBooking());
-            var model = new VolsViewModel(RequestCenter.GetFlights());
+            var model = new VolsViewModel(RequestCenter.GetAllFlights());
             if (bookings != null){
                 model.Bookings = bookings;
                 model.JsonStringBookings = JsonSerializer.Serialize(bookings);
