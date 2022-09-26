@@ -14,12 +14,11 @@ namespace API_Archi
 
         public BrokerAvailableOptions[] available_options { get; set; }
 
-        public string[] stop_overs { get; set; }
+        public string[] stop_overs { get; set; } //List of airports : "JFK", "CDG", ...
 
         public int total_seats { get; set; }
 
         public int price { get; set; }
-
         
         public BrokerFlight(string tenant, string departure, string arrival, string internal_code, BrokerAvailableOptions[] available_options, string[] stop_overs, int total_seats, int price)
         {

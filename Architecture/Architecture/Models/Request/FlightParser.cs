@@ -54,6 +54,31 @@ namespace Architecture.Models.Request
             }
             return result;
         }
+
+        public static BrokerFlight flightToBroker(Flight flight){
+
+            return new BrokerFlight(
+                null,
+                flight.airport_start,
+                fligh.airport_arrival,
+                flight.id.ToString(),
+                [], //TODO
+                [], //TODO
+                flight.nb_max_places,
+                flight.price);
+        }
+
+        public static Flight brokerToFlight(BrokerFlight brokerFlight){
+            return new Flight(
+                brokerFlight.internal_code,
+                brokerFlight.departure,
+                brokerFlight.arrival,
+                null,
+                brokerFlight.price,
+                brokerFlight.total_seats,
+                Flight.Type.Flight,
+                Flight.Source.broker);
+        }
         
     }
 
