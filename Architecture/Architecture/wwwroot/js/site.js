@@ -7,9 +7,11 @@ function funcTransac() {
 }
 function SourceOption(flight) {
     console.log("test")
-    console.log(flight.id)
+    console.log(flight.value)
     let option = document.getElementById('options');
-    if (source == intern) {
+    let source = flight.value.split("_");
+
+    if (source[1] == "intern") {
         option.innerHTML = `
             <div name="InternalFlightDiv">
             
@@ -30,7 +32,7 @@ function SourceOption(flight) {
         </div>
 `
     }
-    if (source == external) {
+    if (source[1] == "external") {
         option.innerHTML = `
         <div name="ExternalFlightDiv">
             
@@ -65,7 +67,7 @@ function SourceOption(flight) {
         </div >
 `
     }
-    if (source == broker) {
+    if (source[1] == "broker") {
         option.innerHTML = `
         <div name="ExternalFlightDiv">
             
