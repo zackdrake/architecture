@@ -23,7 +23,7 @@ namespace Architecture.Controllers
         }
 
         [HttpPost]
-        public IActionResult IndexPost(int flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
+        public IActionResult IndexPost(string flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
         {
             
             // create list PreBooking
@@ -36,7 +36,7 @@ namespace Architecture.Controllers
             // check flight 
             if (RequestCenter.CheckFlightLimit(flight, Date))
             {
-                PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child);
+                PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child, false);
                 bookingslist.Add(booking);
                 
             }

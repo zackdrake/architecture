@@ -65,7 +65,7 @@ namespace Architecture.Models.Request
                 return null;
             }
         }
-        public static bool CheckFlightLimit(int flightId, DateTime date)
+        public static bool CheckFlightLimit(string flightId, DateTime date)
         {
             try
             {

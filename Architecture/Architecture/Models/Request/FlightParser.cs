@@ -14,7 +14,7 @@ namespace Architecture.Models.Request
         public static Flight conversion(ExternalFlight extFlight){
             Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000),
+                rnd.Next(1000).ToString(),
                 extFlight.departure,
                 extFlight.arrival,
                 null,
@@ -36,7 +36,7 @@ namespace Architecture.Models.Request
         public static Flight group7Conversion(Group7Flight g7Flight){
             Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000),
+                rnd.Next(1000).ToString(),
                 g7Flight.departure,
                 g7Flight.arrival,
                 null,

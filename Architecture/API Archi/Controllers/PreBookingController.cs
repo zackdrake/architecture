@@ -77,11 +77,11 @@ namespace API_Archi.Controllers
         [HttpPut("cartprice")]
         public double CartPrice(List<PreBooking> bills)
         {
-            (Dictionary<int, int> dictionary, double price) = BillsRegroupedCalcul(bills);
+            (Dictionary<string, int> dictionary, double price) = BillsRegroupedCalcul(bills);
 
             bool trigger = false;
 
-            foreach (KeyValuePair<int, int> keyValuePair in dictionary)
+            foreach (KeyValuePair<string, int> keyValuePair in dictionary)
             {
                 if (keyValuePair.Value >= groupReduceNb)
                 {
@@ -100,10 +100,10 @@ namespace API_Archi.Controllers
             throw new APIExeption(APIExeption.ExeptionType.IllegalPrice);
         }
 
-        private (Dictionary<int, int>, double) BillsRegroupedCalcul(List<PreBooking> bills)
+        private (Dictionary<string, int>, double) BillsRegroupedCalcul(List<PreBooking> bills)
         {
             double price = 0;
-            Dictionary<int, int> dictionary = new();
+            Dictionary<string, int> dictionary = new();
 
             foreach (PreBooking bill in bills)
             {
