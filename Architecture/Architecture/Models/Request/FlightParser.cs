@@ -41,7 +41,7 @@ namespace Architecture.Models.Request
                 g7Flight.price,
                 -1,
                 Flight.Type.Flight,
-                Flight.Source.external);
+                Flight.Source.groupSeven);
         }
 
         public static List<Flight> group7fullconversion(List<Group7Flight> listExtFlight){
