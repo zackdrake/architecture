@@ -28,7 +28,7 @@ namespace API_Archi
 
         public override string ToString() => 
             airport_optional != string.Empty 
-            ? airport_start + " - " + airport_optional + " - " + airport_arrival + " : " + price + " €" 
-            : airport_start + " - " + airport_arrival + " : " + price + " €";
+            ? airport_start + " - " + airport_optional + " - " + airport_arrival + " : " + price + " EUR" 
+            : airport_start + " - " + airport_arrival + " : " + price + " EUR";
     }
 }

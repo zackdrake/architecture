@@ -161,7 +161,7 @@ namespace Architecture.Models.Request
         }
         public static List<Flight> GetGroup7Flights() {
             try{
-                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights("EUR"));
                 return FlightParser.group7fullconversion(log7f);
             }
             catch {
@@ -177,6 +177,18 @@ namespace Architecture.Models.Request
                 localFlights.Add(item);
             }
             return localFlights;
+        }
+
+        public static string PostGroup7Booking() {
+            Group7Booking g7b  = new Group7Booking(new DateTime(),"romain","delorme",2,"USD");
+            return Group7RequestLauncher.PostBooking(1,g7b);
+        }
+
+        public static string PostExternalBooking() {
+            List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
+            ExternalFlight e1 = loef[0];
+            ExternalBooking eb = new ExternalBooking(null, e1,"23-09-2022",300,"john doe","troll",null,"www.google.com");
+            return ExternalRequestLauncher.PostBooking(eb);
         }
     }
 }
