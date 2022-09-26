@@ -12,7 +12,7 @@ namespace API_Archi
 
         public string booking_date { get; set; } //"23/09/2022"
 
-        public BrokerAvailableOptions[] options_codes { get; set; }
+        public BrokerAvailableOptions[] option_codes { get; set; }
 
         public BrokerTicket(string flight_code, BrokerPerson person, int price, string booking_date, BrokerAvailableOptions[] option_codes)
         {

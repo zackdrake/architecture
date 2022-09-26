@@ -8,7 +8,7 @@ namespace API_Archi
 
         public BrokerCurrency currency { get; set; }
 
-        public BrokerTickets[] tickets { get; set; }
+        public BrokerTicket[] tickets { get; set; }
 
         public BrokerBooking(int total_price, BrokerCurrency currency, BrokerTicket[] tickets)
         {
