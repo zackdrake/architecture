@@ -66,6 +66,15 @@ namespace Architecture.Models.Request
                 flight.price);
         }
 
+        public static List<BrokerFlight> flightToBrokerFullConversion(List<Flight> listFlight){
+            List<BrokerFlight> result = new List<BrokerFlight>();
+            foreach (Flight item in listFlight)
+            {
+                result.Add(flightToBroker(item));
+            }
+            return result;
+        }
+
         public static Flight brokerToFlight(BrokerFlight brokerFlight){
             return new Flight(
                 brokerFlight.internal_code,

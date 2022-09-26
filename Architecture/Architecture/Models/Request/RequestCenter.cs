@@ -202,5 +202,14 @@ namespace Architecture.Models.Request
             ExternalBooking eb = new ExternalBooking(null, e1,"23-09-2022",300,"john doe","troll",null,"www.google.com");
             return ExternalRequestLauncher.PostBooking(eb);
         }
+
+        public static string PostFlights(){
+            try {
+                return BrokerRequestLauncher.PostFlights(GetFlights());
+            }
+            catch {
+                return "";
+            }
+        }
     }
 }
