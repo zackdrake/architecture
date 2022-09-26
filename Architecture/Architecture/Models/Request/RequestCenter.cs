@@ -69,7 +69,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId.ToString() + "/" + date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                return JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId + "/" + date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -168,12 +168,24 @@ namespace Architecture.Models.Request
                 return new List<Flight>();
             }
         }
+        public static List<Flight> GetBrokerFlights() {
+            try{
+                List<BrokerFlight> broFlights = JsonSerializer.Deserialize<List<BrokerFlight>>(BrokerRequestLauncher.GetFlights());
+                return FlightParser.brokerToFlightFullConversion(broFlights);
+            }
+            catch {
+                return new List<Flight>();
+            }
+        }
         public static List<Flight> GetAllFlights() {
             List<Flight> localFlights = GetFlights();
             foreach(Flight item in GetExtFlights()){
                 localFlights.Add(item);
             }
             foreach(Flight item in GetGroup7Flights()){
+                localFlights.Add(item);
+            }
+            foreach(Flight item in GetBrokerFlights()){
                 localFlights.Add(item);
             }
             return localFlights;
@@ -189,6 +201,15 @@ namespace Architecture.Models.Request
             ExternalFlight e1 = loef[0];
             ExternalBooking eb = new ExternalBooking(null, e1,"23-09-2022",300,"john doe","troll",null,"www.google.com");
             return ExternalRequestLauncher.PostBooking(eb);
+        }
+
+        public static string PostFlights(){
+            try {
+                return BrokerRequestLauncher.PostFlights(GetFlights());
+            }
+            catch {
+                return "Failed to post to broker";
+            }
         }
     }
 }
