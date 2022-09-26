@@ -14,16 +14,16 @@ namespace API_Archi.Controllers
         {
             List<Flight> flightContext = new List<Flight>();
 
-            flightContext.Add(new Flight(0, "CDG", "JFK", null, 1000, 750, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(1, "JFK", "CDG", null, 1000, 750, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(2, "CDG", "DTW", null, 700, 500, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(3, "DTW", "CDG", null, 700, 500, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(4, "JFK", "DTW", null, 300, 250, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(5, "DTW", "JFK", null, 300, 250, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(6, "CDG", "DTW", flightContext[5], 1000, 200, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(7, "JFK", "DTW", flightContext[3], 1000, 200, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(8, "JFK", "ORD", null, 400, 600, Flight.Type.Flight, Flight.Source.intern));
-            flightContext.Add(new Flight(9, "CDG", "EWR", new Flight(10, "EWR", "JFK", flightContext[8], 30, 600, Flight.Type.Train, Flight.Source.intern), 400, 600, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("0", "CDG", "JFK", null, 1000, 750, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("1", "JFK", "CDG", null, 1000, 750, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("2", "CDG", "DTW", null, 700, 500, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("3", "DTW", "CDG", null, 700, 500, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("4", "JFK", "DTW", null, 300, 250, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("5", "DTW", "JFK", null, 300, 250, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("6", "CDG", "DTW", flightContext[5], 1000, 200, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("7", "JFK", "DTW", flightContext[3], 1000, 200, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("8", "JFK", "ORD", null, 400, 600, Flight.Type.Flight, Flight.Source.intern));
+            flightContext.Add(new Flight("9", "CDG", "EWR", new Flight("10", "EWR", "JFK", flightContext[8], 30, 600, Flight.Type.Train, Flight.Source.intern), 400, 600, Flight.Type.Flight, Flight.Source.intern));
 
             return flightContext;
         }
@@ -41,7 +41,7 @@ namespace API_Archi.Controllers
             throw new APIExeption(APIExeption.ExeptionType.ObjectNotFound);
         }
 
-        public Flight GetFlightById(int id)
+        public Flight GetFlightById(string id)
         {
             Flight flight = ReadFlightContext().Single(fl => fl.id == id);
 
