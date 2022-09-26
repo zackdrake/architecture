@@ -24,40 +24,83 @@ namespace Architecture.Controllers
         }
 
         [HttpPost]
-        public IActionResult IndexPost(string flight, bool Child, bool Luggage, string FirstName, string LastName, DateTime Date, string bookings, string submit)
+        public IActionResult IndexPost(string flightSourceId, string FirstName, string LastName, DateTime Date, bool Child, bool Luggage, bool FirstClass, bool ChampagneOnBoard, bool LoungeAccess, string bookings, string submit)
         {
-            
-            // create list PreBooking
-            List<PreBooking> bookingslist = new List<PreBooking>();
-            if (bookings != null)
-            {
-                bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
-            }
+            string flight = flightSourceId.Split("_")[0];
+            string source = flightSourceId.Split("_")[1];
 
-            // check flight 
-            if (RequestCenter.CheckFlightLimit(flight, Date))
+            if (source == "intern")
             {
-                PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child, false);
-                bookingslist.Add(booking);
-                
-            }
-            else 
-            {
-                if (submit == "payer")
+                // create list PreBooking
+                List<PreBooking> bookingslist = new List<PreBooking>();
+                if (bookings != null)
+                {
+                    bookingslist = JsonSerializer.Deserialize<List<PreBooking>>(bookings);
+                }
+
+                // check flight 
+                if (RequestCenter.CheckFlightLimit(flight, Date))
+                {
+                    PreBooking booking = new PreBooking(FirstName, LastName, flight, Date, Luggage, Child, false);
+                    bookingslist.Add(booking);
+
+                }
+                else
+                {
+                    if (submit == "payer")
+                    {
+                        return Index(bookingslist);
+                    }
+                }
+
+                // continue transaction or cell flights 
+                if (submit == "transaction")
                 {
                     return Index(bookingslist);
                 }
-            }
+                else
+                {
 
-            // continue transaction or cell flights 
-            if (submit == "transaction"){
-                return Index(bookingslist);
+                    double price = RequestCenter.GetCartPrice(bookingslist);
+                    return Transaction(bookingslist, price);
+                }
             }
-            else {
+            else if(source == "external")
+            {
+                string externalDate = Date.ToString("dd'-'MM'-'yyyy");
 
-                double price = RequestCenter.GetCartPrice(bookingslist);
-                return Transaction(bookingslist, price);
+
+                ExternalFlight externalFlight = null;
+
+                try
+                {
+                    List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
+
+                    foreach(ExternalFlight external in loef)
+                    {
+                        if (external.code == flight)
+                        {
+                            externalFlight = external;
+                            break;
+                        }
+                    }
+                }
+                catch { }
+
+                string listoptionJson = ExternalRequestLauncher.GetAvailableOptions(flight);
+                var tabOptions = JsonSerializer.Deserialize<ExternalFlightOptions[]>(listoptionJson);
+
+                //ExternalFlightOptions optionsLuggage = new ExternalFlightOptions(OptionType.BonusLuggage, listOption.Find();
+                //ExternalFlightOptions optionsChampagneOnBoard = new ExternalFlightOptions(OptionType.ChampagneOnBoard, );
+                //ExternalFlightOptions optionsFirstClass = new ExternalFlightOptions(OptionType.FirstClass, );
+                //ExternalFlightOptions optionsLoungeAccess = new ExternalFlightOptions(OptionType.LoungeAccess, );
+
+                //ExternalFlightOptions[] options = { optionsLuggage, optionsChampagneOnBoard, optionsFirstClass, optionsLoungeAccess };
+
+                ExternalBooking externalBooking = new ExternalBooking(null, externalFlight, externalDate, externalFlight.base_price, LastName, FirstName, tabOptions, "groupe1");
+                
             }
+            return Index();
         }
 
         public IActionResult Transaction(List<PreBooking> bookings, double price)
