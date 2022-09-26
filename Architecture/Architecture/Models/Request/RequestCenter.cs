@@ -208,7 +208,7 @@ namespace Architecture.Models.Request
                 return BrokerRequestLauncher.PostFlights(GetFlights());
             }
             catch {
-                return "";
+                return "Failed to post to broker";
             }
         }
     }
