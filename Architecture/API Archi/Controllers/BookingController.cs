@@ -8,7 +8,7 @@ namespace API_Archi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BookingController : ControllerBase
+    public class BookingController : Controller
     {
         private static string FileName = "Tables/Booking.json";
 
