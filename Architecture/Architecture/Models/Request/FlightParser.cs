@@ -77,6 +77,16 @@ namespace Architecture.Models.Request
                 Flight.Type.Flight,
                 Flight.Source.broker);
         }
+
+
+        public static List<Flight> brokerToFlightFullConversion(List<BrokerFlight> listBroFlights){
+            List<Flight> result = new List<Flight>();
+            foreach (BrokerFlight item in listBroFlights)
+            {
+                result.Add(brokerToFlight(item));
+            }
+            return result;
+        }
         
     }
 

@@ -14,7 +14,7 @@ namespace Architecture.Models.Request
     public class BrokerRequestLauncher
     {
 
-        public static string Broker_API_URL = "http://server.aurelientorres.com/flights";
+        public static string Broker_API_URL = "http://server.aurelientorres.com";
         public static string Broker_API_KEY = "BrokerAPIKey";
         public enum METHOD
         {
@@ -92,13 +92,13 @@ namespace Architecture.Models.Request
         public static string PostFlights()
         {
 
-            return SendBrokerRequest(METHOD.GET, ENDPOINT.flights);
+            return SendBrokerRequest(METHOD.POST, ENDPOINT.flights); //TODO
         }
 
 
         public static string PostBooking(BrokerBooking BrokerBooking)
         {
-            return SendBrokerRequest(METHOD.POST, ENDPOINT.booking, JsonSerializer.Serialize(BrokerBooking));
+            return SendBrokerRequest(METHOD.POST, ENDPOINT.booking, JsonSerializer.Serialize(BrokerBooking)); //TODO
         }
     }
 }

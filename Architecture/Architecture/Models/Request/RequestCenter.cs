@@ -168,12 +168,24 @@ namespace Architecture.Models.Request
                 return new List<Flight>();
             }
         }
+        public static List<Flight> GetBrokerFlights() {
+            try{
+                List<BrokerFlight> broFlights = JsonSerializer.Deserialize<List<BrokerFlight>>(BrokerRequestLauncher.GetFlights());
+                return FlightParser.brokerToFlightFullConversion(broFlights);
+            }
+            catch {
+                return new List<Flight>();
+            }
+        }
         public static List<Flight> GetAllFlights() {
             List<Flight> localFlights = GetFlights();
             foreach(Flight item in GetExtFlights()){
                 localFlights.Add(item);
             }
             foreach(Flight item in GetGroup7Flights()){
+                localFlights.Add(item);
+            }
+            foreach(Flight item in GetBrokerFlights()){
                 localFlights.Add(item);
             }
             return localFlights;
