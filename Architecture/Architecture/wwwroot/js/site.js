@@ -6,6 +6,9 @@ function funcTransac() {
     document.getElementById('submit').value = 'transaction';
 }
 function SourceOption(source) {
-    let option = document.getElementById('option');
-    option.innerHTML = '<div id="options < div <label for="Child">Tariffeeeeee enfant -10ans => -10%</label<input type="checkbox" name="Child" checked value="true" <input type="hidden" name="Child" value="false" /></div ></div >'
+    console.log("test")
+    let option = document.getElementById('options');
+    option.innerHTML = '<div><label for="Child">Tariffeeeeee enfant -10ans => -10%</label><input type="checkbox" name="Child" checked value="true" <input type="hidden" name="Child" value="false" /></div >'
 }
+
+

@@ -41,20 +41,13 @@
         <h1 class="display-4">Bienvenue</h1>
         <label for="flight-select">Choisissez un vol:</label>
 
-        <select name="flight" id="flight-select">
+        @*SourceOption(@flight.source)*@
+        <select name="flight" id="flight-select" onchange="SourceOption(1)">
             @{
                 foreach (Flight flight in Model.Flights)
                 {
-                    <option value="@{flight.source + "_" + flight.id}" accesskey="SourceOption(@flight.source)">@flight.ToString()</option>
-                }
-            }
-        </select>
-
-        <select name="flight" id="flight-select">
-            @{
-                foreach (Flight flight in Model.AllFlights)
-                {
                     <option value="@flight.id">@flight.ToString()</option>
+
                 }
             }
         </select>
