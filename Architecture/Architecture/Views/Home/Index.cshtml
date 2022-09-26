@@ -42,14 +42,16 @@
         <label for="flight-select">Choisissez un vol:</label>
 
         @*SourceOption(@flight.source)*@
-        <select name="flight" id="flight-select" onchange="SourceOption(1)">
+        <select id="SelectedFlight" name="flight" onchange="SourceOption(document.getElementById('SelectedFlight'))">
             @{
                 foreach (Flight flight in Model.Flights)
                 {
-                    <option value="@flight.id">@flight.ToString()</option>
+                    <option value="@flight.id" source= "@flight.source" train="@flight.IsThereATrain()" >@flight.ToString()</option>
+                    
 
                 }
             }
+          
         </select>
     </div>
 
