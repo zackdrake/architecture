@@ -16,10 +16,12 @@ namespace Architecture.Models.Request
             return new Flight(
                 rnd.Next(1000),
                 extFlight.departure,
-                string.Empty,
                 extFlight.arrival,
+                null,
                 extFlight.base_price,
-                extFlight.plane.total_seats);
+                extFlight.plane.total_seats,
+                Flight.Type.Flight,
+                Flight.Source.external);
         }
         
         public static List<Flight> fullconversion(List<ExternalFlight> listExtFlight){
@@ -36,10 +38,12 @@ namespace Architecture.Models.Request
             return new Flight(
                 rnd.Next(1000),
                 g7Flight.departure,
-                string.Empty,
                 g7Flight.arrival,
+                null,
                 g7Flight.price,
-                -1);
+                -1,
+                Flight.Type.Flight,
+                Flight.Source.external);
         }
 
         public static List<Flight> group7fullconversion(List<Group7Flight> listExtFlight){

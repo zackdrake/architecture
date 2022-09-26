@@ -14,7 +14,7 @@ namespace Architecture.Controllers
     {
         public IActionResult Index(List<PreBooking> bookings = null)
         {
-            var model = new VolsViewModel(RequestCenter.GetFlights(), RequestCenter.GetAllFlights());
+            var model = new VolsViewModel(RequestCenter.GetAllFlights());
 
             if (bookings != null){
                 model.Bookings = bookings;

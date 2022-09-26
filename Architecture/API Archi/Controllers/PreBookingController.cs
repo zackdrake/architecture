@@ -6,7 +6,7 @@ namespace API_Archi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PreBookingController : ControllerBase
+    public class PreBookingController : Controller
     {
         private static double luggageValue = 0.9;
         private static double childReduceValue = 50;
@@ -61,7 +61,7 @@ namespace API_Archi.Controllers
             {
                 price += childReduceValue;
             }
-            if (flight.airport_optional != string.Empty)
+            if (flight.Next !=  null)
             {
                 price *= escaleReduceValue;
             }

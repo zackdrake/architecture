@@ -15,7 +15,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<List<Flight>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Flight, string.Empty));
+                return JsonSerializer.Deserialize<List<Flight>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Flight, string.Empty), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -31,7 +31,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<List<Booking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, string.Empty));
+                return JsonSerializer.Deserialize<List<Booking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, string.Empty), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -44,7 +44,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<Booking>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, totalPrice.ToString(), JsonSerializer.Serialize(preBooking)));
+                return JsonSerializer.Deserialize<Booking>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, totalPrice.ToString(), JsonSerializer.Serialize(preBooking)), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -57,7 +57,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<List<Booking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, "Multiple/" + firstName + "/" + lastName + "/" + totalPrice, JsonSerializer.Serialize(preBookings)));
+                return JsonSerializer.Deserialize<List<Booking>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Booking, "Multiple/" + firstName + "/" + lastName + "/" + totalPrice, JsonSerializer.Serialize(preBookings)), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -69,7 +69,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId.ToString() + "/" + date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")));
+                return JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId.ToString() + "/" + date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -85,7 +85,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.PUT, RequestLauncher.CONTROLLER.PreBooking, "price", JsonSerializer.Serialize(bill)));
+                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.PUT, RequestLauncher.CONTROLLER.PreBooking, "price", JsonSerializer.Serialize(bill)), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -97,7 +97,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.PUT, RequestLauncher.CONTROLLER.PreBooking, "cartprice", JsonSerializer.Serialize(bills)));
+                return JsonSerializer.Deserialize<double>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.PUT, RequestLauncher.CONTROLLER.PreBooking, "cartprice", JsonSerializer.Serialize(bills)), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -109,7 +109,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<Dictionary<MoneyRef, double>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.PreBooking, "convert"));
+                return JsonSerializer.Deserialize<Dictionary<MoneyRef, double>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.PreBooking, "convert"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -125,7 +125,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<List<Transaction>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Transaction, string.Empty));
+                return JsonSerializer.Deserialize<List<Transaction>>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Transaction, string.Empty), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -137,7 +137,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<Transaction>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Transaction, string.Empty, JsonSerializer.Serialize(transaction)));
+                return JsonSerializer.Deserialize<Transaction>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.POST, RequestLauncher.CONTROLLER.Transaction, string.Empty, JsonSerializer.Serialize(transaction)), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
@@ -161,7 +161,7 @@ namespace Architecture.Models.Request
         }
         public static List<Flight> GetGroup7Flights() {
             try{
-                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights());
+                List<Group7Flight> log7f = JsonSerializer.Deserialize<List<Group7Flight>>(Group7RequestLauncher.GetFlights("EUR"));
                 return FlightParser.group7fullconversion(log7f);
             }
             catch {
@@ -177,6 +177,18 @@ namespace Architecture.Models.Request
                 localFlights.Add(item);
             }
             return localFlights;
+        }
+
+        public static string PostGroup7Booking() {
+            Group7Booking g7b  = new Group7Booking(new DateTime(),"romain","delorme",2,"USD");
+            return Group7RequestLauncher.PostBooking(1,g7b);
+        }
+
+        public static string PostExternalBooking() {
+            List<ExternalFlight> loef = JsonSerializer.Deserialize<List<ExternalFlight>>(ExternalRequestLauncher.GetFlights(""));
+            ExternalFlight e1 = loef[0];
+            ExternalBooking eb = new ExternalBooking(null, e1,"23-09-2022",300,"john doe","troll",null,"www.google.com");
+            return ExternalRequestLauncher.PostBooking(eb);
         }
     }
 }
