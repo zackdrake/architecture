@@ -54,9 +54,9 @@ namespace API_Archi
             else { text = price + " EUR"; }
             if (type == Type.Train)
             {
-                return airport_start + " - " + airport_arrival + " (TRAIN) : " + text;
+                return source + " > " + airport_start + " - " + airport_arrival + " (TRAIN) : " + text;
             }
-            return airport_start + " - " + airport_arrival + " : " + text;
+            return source + " > " + airport_start + " - " + airport_arrival + " : " + text;
         }
 
         public bool IsThereATrain()

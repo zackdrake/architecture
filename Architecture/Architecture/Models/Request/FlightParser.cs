@@ -41,7 +41,7 @@ namespace Architecture.Models.Request
                 g7Flight.price,
                 -1,
                 Flight.Type.Flight,
-                Flight.Source.external);
+                Flight.Source.groupSeven);
         }
 
         public static List<Flight> group7fullconversion(List<Group7Flight> listExtFlight){
@@ -66,6 +66,15 @@ namespace Architecture.Models.Request
                 flight.price);
         }
 
+        public static List<BrokerFlight> flightToBrokerFullConversion(List<Flight> listFlight){
+            List<BrokerFlight> result = new List<BrokerFlight>();
+            foreach (Flight item in listFlight)
+            {
+                result.Add(flightToBroker(item));
+            }
+            return result;
+        }
+
         public static Flight brokerToFlight(BrokerFlight brokerFlight){
             return new Flight(
                 brokerFlight.internal_code,
@@ -76,6 +85,16 @@ namespace Architecture.Models.Request
                 brokerFlight.total_seats,
                 Flight.Type.Flight,
                 Flight.Source.broker);
+        }
+
+
+        public static List<Flight> brokerToFlightFullConversion(List<BrokerFlight> listBroFlights){
+            List<Flight> result = new List<Flight>();
+            foreach (BrokerFlight item in listBroFlights)
+            {
+                result.Add(brokerToFlight(item));
+            }
+            return result;
         }
         
     }
