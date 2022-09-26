@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace API_Archi
 {
@@ -12,15 +13,15 @@ namespace API_Archi
 
         public string internal_code { get; set; }
 
-        public BrokerAvailableOptions[] available_options { get; set; }
+        public List<BrokerAvailableOptions> available_options { get; set; }
 
-        public string[] stop_overs { get; set; } //List of airports : "JFK", "CDG", ...
+        public List<string> stop_overs { get; set; } //List of airports : "JFK", "CDG", ...
 
         public int total_seats { get; set; }
 
         public int price { get; set; }
         
-        public BrokerFlight(string tenant, string departure, string arrival, string internal_code, BrokerAvailableOptions[] available_options, string[] stop_overs, int total_seats, int price)
+        public BrokerFlight(string tenant, string departure, string arrival, string internal_code, List<BrokerAvailableOptions> available_options, List<string> stop_overs, int total_seats, int price)
         {
             this.tenant = tenant;
             this.departure = departure;

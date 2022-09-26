@@ -12,9 +12,8 @@ namespace Architecture.Models.Request
 {
     public class FlightParser{
         public static Flight conversion(ExternalFlight extFlight){
-            Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000).ToString(),
+                extFlight.code,
                 extFlight.departure,
                 extFlight.arrival,
                 null,
@@ -34,9 +33,8 @@ namespace Architecture.Models.Request
         }
 
         public static Flight group7Conversion(Group7Flight g7Flight){
-            Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000).ToString(),
+                g7Flight.id.ToString(),
                 g7Flight.departure,
                 g7Flight.arrival,
                 null,
@@ -60,10 +58,10 @@ namespace Architecture.Models.Request
             return new BrokerFlight(
                 null,
                 flight.airport_start,
-                fligh.airport_arrival,
-                flight.id.ToString(),
-                [], //TODO
-                [], //TODO
+                flight.airport_arrival,
+                flight.id,
+                flight.GetFlightOptions(),
+                flight.StopAirPorts(),
                 flight.nb_max_places,
                 flight.price);
         }
