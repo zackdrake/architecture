@@ -13,6 +13,8 @@ namespace API_Archi.Controllers
         private static int groupReduceNb = 6;
         private static double groupReduceValue = 0.97;
         private static double escaleReduceValue = 0.85;
+        private static double trainValue = 30;
+        private static double firstClassValue = 50;
 
         public enum MoneyRef
         {
@@ -55,15 +57,24 @@ namespace API_Archi.Controllers
 
             if (bill.luggage)
             {
-                price *= luggageValue;
+                price = luggageReduction(price);
             }
             if (bill.childReduction)
             {
-                price += childReduceValue;
+                price = childReduction(price);
             }
             if (flight.Next !=  null)
             {
-                price *= escaleReduceValue;
+                price = escaleReduction(price);
+            }
+            if (flight.IsThereATrain())
+            {
+                price = trainReduction(price);
+
+                if (bill.trainFirstClassOption)
+                {
+                    price = firstClassReduction(price);
+                }
             }
 
             if (price > 0)
@@ -77,11 +88,11 @@ namespace API_Archi.Controllers
         [HttpPut("cartprice")]
         public double CartPrice(List<PreBooking> bills)
         {
-            (Dictionary<int, int> dictionary, double price) = BillsRegroupedCalcul(bills);
+            (Dictionary<string, int> dictionary, double price) = BillsRegroupedCalcul(bills);
 
             bool trigger = false;
 
-            foreach (KeyValuePair<int, int> keyValuePair in dictionary)
+            foreach (KeyValuePair<string, int> keyValuePair in dictionary)
             {
                 if (keyValuePair.Value >= groupReduceNb)
                 {
@@ -100,10 +111,10 @@ namespace API_Archi.Controllers
             throw new APIExeption(APIExeption.ExeptionType.IllegalPrice);
         }
 
-        private (Dictionary<int, int>, double) BillsRegroupedCalcul(List<PreBooking> bills)
+        private (Dictionary<string, int>, double) BillsRegroupedCalcul(List<PreBooking> bills)
         {
             double price = 0;
-            Dictionary<int, int> dictionary = new();
+            Dictionary<string, int> dictionary = new();
 
             foreach (PreBooking bill in bills)
             {
@@ -120,6 +131,41 @@ namespace API_Archi.Controllers
                 }
             }
             return (dictionary, price);
+        }
+
+        private double luggageReduction(double price)
+        {
+            price *= luggageValue;
+
+            return price;
+        }
+
+        private double childReduction(double price)
+        {
+            price += childReduceValue;
+
+            return price;
+        }
+
+        private double escaleReduction(double price)
+        {
+            price *= escaleReduceValue;
+
+            return price;
+        }
+
+        private double trainReduction(double price)
+        {
+            price += trainValue;
+
+            return price;
+        }
+
+        private double firstClassReduction(double price)
+        {
+            price += firstClassValue;
+
+            return price;
         }
     }
 }

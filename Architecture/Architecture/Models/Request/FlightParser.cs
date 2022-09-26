@@ -12,9 +12,8 @@ namespace Architecture.Models.Request
 {
     public class FlightParser{
         public static Flight conversion(ExternalFlight extFlight){
-            Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000),
+                extFlight.code,
                 extFlight.departure,
                 extFlight.arrival,
                 null,
@@ -34,16 +33,15 @@ namespace Architecture.Models.Request
         }
 
         public static Flight group7Conversion(Group7Flight g7Flight){
-            Random rnd = new Random();
             return new Flight(
-                rnd.Next(1000),
+                g7Flight.id.ToString(),
                 g7Flight.departure,
                 g7Flight.arrival,
                 null,
                 g7Flight.price,
                 -1,
                 Flight.Type.Flight,
-                Flight.Source.external);
+                Flight.Source.groupSeven);
         }
 
         public static List<Flight> group7fullconversion(List<Group7Flight> listExtFlight){
@@ -51,6 +49,50 @@ namespace Architecture.Models.Request
             foreach (Group7Flight item in listExtFlight)
             {
                 result.Add(group7Conversion(item));
+            }
+            return result;
+        }
+
+        public static BrokerFlight flightToBroker(Flight flight){
+
+            return new BrokerFlight(
+                null,
+                flight.airport_start,
+                flight.airport_arrival,
+                flight.id,
+                flight.GetFlightOptions(),
+                flight.StopAirPorts(),
+                flight.nb_max_places,
+                flight.price);
+        }
+
+        public static List<BrokerFlight> flightToBrokerFullConversion(List<Flight> listFlight){
+            List<BrokerFlight> result = new List<BrokerFlight>();
+            foreach (Flight item in listFlight)
+            {
+                result.Add(flightToBroker(item));
+            }
+            return result;
+        }
+
+        public static Flight brokerToFlight(BrokerFlight brokerFlight){
+            return new Flight(
+                brokerFlight.internal_code,
+                brokerFlight.departure,
+                brokerFlight.arrival,
+                null,
+                brokerFlight.price,
+                brokerFlight.total_seats,
+                Flight.Type.Flight,
+                Flight.Source.broker);
+        }
+
+
+        public static List<Flight> brokerToFlightFullConversion(List<BrokerFlight> listBroFlights){
+            List<Flight> result = new List<Flight>();
+            foreach (BrokerFlight item in listBroFlights)
+            {
+                result.Add(brokerToFlight(item));
             }
             return result;
         }

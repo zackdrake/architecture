@@ -46,12 +46,11 @@
             @{
                 foreach (Flight flight in Model.Flights)
                 {
-                    <option value="@flight.id" source= "@flight.source" train="@flight.IsThereATrain()" >@flight.ToString()</option>
-                    
+                    string idSource = flight.id + "_" + flight.source;
+                    <option value="@idSource " source= "@flight.source" train="@flight.IsThereATrain()">@flight.ToString()</option>
 
                 }
             }
-          
         </select>
     </div>
 
