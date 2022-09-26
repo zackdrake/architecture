@@ -19,7 +19,9 @@ namespace API_Archi
 
         public bool childReduction { get; set; }
 
-        public PreBooking(string firstName, string lastName, int FlightId, DateTime date, bool luggage, bool childReduction)
+        public bool trainFirstClassOption { get; set; }
+
+        public PreBooking(string firstName, string lastName, int FlightId, DateTime date, bool luggage, bool childReduction, bool isThereATrain, bool trainFirstClassOption)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -27,6 +29,8 @@ namespace API_Archi
             this.date = date;
             this.luggage = luggage;
             this.childReduction = childReduction;
+            this.isThereATrain = isThereATrain;
+            this.trainFirstClassOption = trainFirstClassOption;
         }
     }
 }

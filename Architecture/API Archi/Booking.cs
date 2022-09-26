@@ -21,6 +21,10 @@ namespace API_Archi
 
         public double childReduction { get; set; }
 
+        public bool isThereATrain { get; set; }
+
+        public bool trainFirstClassOption { get; set; }
+
         public int transactionId { get; set; }
 
         [JsonConstructor]
