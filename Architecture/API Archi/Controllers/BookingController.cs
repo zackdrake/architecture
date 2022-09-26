@@ -24,15 +24,15 @@ namespace API_Archi.Controllers
             System.IO.File.WriteAllText(FileName, jsonString);
         }
 
-        private static int NewBookingId()
+        private static string NewBookingId()
         {
             List<Booking> bookings = ReadBookingContext();
 
             if (bookings.Count() > 0)
             {
-                return bookings.Last().id + 1;
+                return (Int32.Parse(bookings.Last().id) + 1).ToString();
             }
-            return 0;
+            return "0";
         }
 
         // http://localhost:52880/Booking/
@@ -114,7 +114,7 @@ namespace API_Archi.Controllers
 
         // http://localhost:52880/Booking/checkFlightLimit/{id}/{date}
         [HttpGet("checkFlightLimit/{id}/{date}")]
-        public bool CheckFlightLimit(int id, DateTime date)
+        public bool CheckFlightLimit(string id, DateTime date)
         {
             List<Booking> bookings = ReadBookingContext();
 

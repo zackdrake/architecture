@@ -68,19 +68,78 @@
             <input type="date" name="Date" required />
         </div>
 
-        <legend>Options</legend>
-        <div id="options">
-            <div>
+        <div name="ExternalFlightDiv">
+            <legend>Options</legend>
+
+
+
+            <div name="ChildDiv">
                 <label for="Child">Tarif enfant -10ans => -10%</label>
                 <input type="checkbox" name="Child" checked value="true" />
                 <input type="hidden" name="Child" value="false" />
             </div>
-            <div>
+            <div name="LuggageDiv">
                 <label for="Luggage">Bagage : 50€</label>
                 <input type="checkbox" name="Luggage" checked value="true" />
                 <input type="hidden" name="Luggage" value="false" />
             </div>
+            <div name="FirstClassDiv">
+                <label for="FirstClass">Première Classe : 50€</label>
+                <input type="checkbox" name="FirstClass" checked value="true" />
+                <input type="hidden" name="FirstClass" value="false" />
+            </div>
+            <div name="ChampagneOnBoardDiv">
+                <label for="ChampagneOnBoard">Champagne : ??€</label>
+                <input type="checkbox" name="ChampagneOnBoard" checked value="true" />
+                <input type="hidden" name="ChampagneOnBoard" value="false" />
+            </div>
+            <div name="LoungAccessDiv">
+                <label for="LoungeAccess">Acces Lounge : ??€</label>
+                <input type="checkbox" name="LoungeAccess" checked value="true" />
+                <input type="hidden" name="LoungeAccess" value="false" />
+            </div>
         </div>
+
+        <div type="hidden" name="InternalFlightDiv">
+            <legend>Options</legend>
+
+
+
+            <div name="ChildDiv">
+                <label for="Child">Tarif enfant -10ans => -10%</label>
+                <input type="checkbox" name="Child" checked value="true" />
+                <input type="hidden" name="Child" value="false" />
+            </div>
+            <div name="LuggageDiv">
+                <label for="Luggage">Bagage : 50€</label>
+                <input type="checkbox" name="Luggage" checked value="true" />
+                <input type="hidden" name="Luggage" value="false" />
+            </div>
+           
+        </div>
+
+        <div type="hidden" name="InternalFlightWithTrainDiv">
+            <legend>Options</legend>
+
+
+
+            <div name="ChildDiv">
+                <label for="Child">Tarif enfant -10ans => -10%</label>
+                <input type="checkbox" name="Child" checked value="true" />
+                <input type="hidden" name="Child" value="false" />
+            </div>
+            <div name="LuggageDiv">
+                <label for="Luggage">Bagage : 50€</label>
+                <input type="checkbox" name="Luggage" checked value="true" />
+                <input type="hidden" name="Luggage" value="false" />
+            </div>
+            <div name="FirstClassDiv">
+                <label for="FirstClass">Première Classe : 50€</label>
+                <input type="checkbox" name="FirstClass" checked value="true" />
+                <input type="hidden" name="FirstClass" value="false" />
+            </div>
+        </div>
+
 
         <input type="hidden" value="@Model.JsonStringBookings" name="bookings" />
         <input type="hidden" value="" name="Submit" id="submit" />

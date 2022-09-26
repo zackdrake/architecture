@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 
 namespace API_Archi
 {
     public class Flight
     {
-        public int id { get; set; }
+        public string id { get; set; }
 
         public string airport_start { get; set; }
 
@@ -34,7 +35,7 @@ namespace API_Archi
             broker
         }
 
-        public Flight(int id, string airport_start, string airport_arrival, Flight Next, int price, int nb_max_places, Type type, Source source)
+        public Flight(string id, string airport_start, string airport_arrival, Flight Next, int price, int nb_max_places, Type type, Source source)
         {
             this.id = id;
             this.airport_start = airport_start;
@@ -48,9 +49,9 @@ namespace API_Archi
 
         public override string ToString()
         {
-            string text = string.Empty;
+            string text;
             if (Next != null) { text = Next.ToString(); }
-            else { text = price + " �"; }
+            else { text = price + " EUR"; }
             if (type == Type.Train)
             {
                 return airport_start + " - " + airport_arrival + " (TRAIN) : " + text;
@@ -75,6 +76,49 @@ namespace API_Archi
                     return false;
                 }
             }
+        }
+        public List<string> StopAirPorts()
+        {
+            List<string> StopsTab = StopAirPortsCicle();
+
+            StopsTab.Remove(StopsTab[0]);
+            StopsTab.Remove(StopsTab[StopsTab.Count - 1]);
+
+            return StopsTab;
+        }
+
+        private List<string> StopAirPortsCicle()
+        {
+            List<string> StopsTab = new List<string>();
+
+            StopsTab.Add(airport_start);
+
+            if (Next != null)
+            {
+                List<string> StopsTabChild = Next.StopAirPortsCicle();
+
+                foreach (string txt in StopsTabChild)
+                {
+                    StopsTab.Add(txt);
+                }
+            }
+            else
+            {
+                StopsTab.Add(airport_arrival);
+            }
+
+            return StopsTab;
+        }
+
+        public List<BrokerAvailableOptions> GetFlightOptions()
+        {
+            List<BrokerAvailableOptions> flightOptions = new List<BrokerAvailableOptions>();
+
+            flightOptions.Add(new BrokerAvailableOptions("luggage", "01", 10));
+            flightOptions.Add(new BrokerAvailableOptions("childReduction", "02", 50));
+            flightOptions.Add(new BrokerAvailableOptions("trainFirstClassOption", "03", 50));
+
+            return flightOptions;
         }
     }
 }
