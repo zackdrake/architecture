@@ -1,4 +1,6 @@
 ﻿@using API_Archi;
+@using Architecture.Models;
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,7 +9,7 @@
 
 
 @{
-    if (Model.Bookings != null)
+    if (Model.Bookings.Count != 0)
     {
         <table>
             Liste des billets
@@ -43,7 +45,16 @@
             @{
                 foreach (Flight flight in Model.Flights)
                 {
-                        <option value="@flight.id">@flight.ToString()</option>
+                    <option value="@{flight.source + "_" + flight.id}" accesskey="SourceOption(@flight.source)">@flight.ToString()</option>
+                }
+            }
+        </select>
+
+        <select name="flight" id="flight-select">
+            @{
+                foreach (Flight flight in Model.AllFlights)
+                {
+                    <option value="@flight.id">@flight.ToString()</option>
                 }
             }
         </select>
@@ -65,18 +76,20 @@
         </div>
 
         <legend>Options</legend>
-        <div>
-            <label for="Child">Tarif enfant -10ans => -10%</label>
-            <input type="checkbox" name="Child" checked value="true" />
-            <input type="hidden" name="Child" value="false" />
-        </div>
-        <div>
-            <label for="Luggage">Bagage : 50€</label>
-            <input type="checkbox" name="Luggage" checked value="true" />
-            <input type="hidden" name="Luggage" value="false" />
+        <div id="options">
+            <div>
+                <label for="Child">Tarif enfant -10ans => -10%</label>
+                <input type="checkbox" name="Child" checked value="true" />
+                <input type="hidden" name="Child" value="false" />
+            </div>
+            <div>
+                <label for="Luggage">Bagage : 50€</label>
+                <input type="checkbox" name="Luggage" checked value="true" />
+                <input type="hidden" name="Luggage" value="false" />
+            </div>
         </div>
 
-        <input type="hidden" value="@Model.JsonStringBookings" name="bookings"/>
+        <input type="hidden" value="@Model.JsonStringBookings" name="bookings" />
         <input type="hidden" value="" name="Submit" id="submit" />
         <div>
             <label>&nbsp;</label>
