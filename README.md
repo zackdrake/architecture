@@ -11,8 +11,6 @@ Chacun de ces fichiers doit contenir seulement
 
 Ils doivent etre crees dans le dossier : "Architecture/API_Archi/Tables".
 
-Attention, le dossier "Tables" peut ne pas exister. Dans ce cas, il faut egalement le creer.
-
 Sur Linux, avec l'environnement dotnet :
 Dans Architecture/Architecture lancez le front-end avec : `dotnet run --urls="http://localhost:5005"` (le port n'est pas important)
 Dans Architecture/API Archi lancez : `dotnet run --urls="http://localhost:52880"` (le port est important)
