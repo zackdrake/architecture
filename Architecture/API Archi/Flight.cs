@@ -49,9 +49,9 @@ namespace API_Archi
 
         public override string ToString()
         {
-            string text = string.Empty;
+            string text;
             if (Next != null) { text = Next.ToString(); }
-            else { text = price + " €"; }
+            else { text = price + " EUR"; }
             if (type == Type.Train)
             {
                 return airport_start + " - " + airport_arrival + " (TRAIN) : " + text;
