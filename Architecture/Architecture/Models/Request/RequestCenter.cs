@@ -69,7 +69,7 @@ namespace Architecture.Models.Request
         {
             try
             {
-                return JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId.ToString() + "/" + date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                return JsonSerializer.Deserialize<bool>(RequestLauncher.LaunchRequest(RequestLauncher.METHOD.GET, RequestLauncher.CONTROLLER.Booking, "checkFlightLimit/" + flightId + "/" + date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (APIExeption e)
             {
